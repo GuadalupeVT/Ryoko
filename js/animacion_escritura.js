@@ -3,7 +3,8 @@ const typed = new Typed('.typed', {
 		'<i class="frase">Viaja</i>',
 		'<i class="frase">Disfruta</i>',
 		'<i class="frase">Aprende</i>',
-		'<i class="frase">Relajate</i>'
+		'<i class="frase">Relajate</i>',
+		'<i class="frase">RESERVA YA!</i>'
 	],
 
 	//stringsElement: '#cadenas-texto', // ID del elemento que contiene cadenas de texto a mostrar.
