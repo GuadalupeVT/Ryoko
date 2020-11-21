@@ -36,8 +36,27 @@ nav{
 
 
 .navbar-brand img{
-    width: 40%; 
+    width: 30%; 
     text-align: left;
+}
+
+.btnRegistro{
+    border: 3px solid #9b0000;
+    background: none;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-family: monospace;
+    cursor: pointer;
+    margin: 10px;
+    color: white;
+    transition: 0.8s;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px 24px 24px 0px;
+}
+
+.btnRegistro:hover{
+    background-color: #9b0000;
 }
 
 
