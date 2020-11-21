@@ -16,52 +16,32 @@
 
         <!-- Importacion de css-->
         <link href="css/landing_page/main.css" rel="stylesheet" type="text/css">
+         <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
         
     </head>
     <body>
 
-<!--********************** Barra de Navegacion *********************-->
-      <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+     
 
 
-
-
-
-        <div class="banner" style="background-image: url(imagenes/landing_page/fondo.jpg);">
-
-            <div class="clouds">
-                <img src="imagenes/landing_page/cloud1.png" style="--i:1;">
-                <img src="imagenes/landing_page/cloud2.png" style="--i:2;">
-                <img src="imagenes/landing_page/cloud3.png" style="--i:3;">
-                <img src="imagenes/landing_page/cloud4.png" style="--i:4;">
-                <img src="imagenes/landing_page/cloud5.png" style="--i:5;">
-            </div>
-        
-        </div>
-
-        <h2>
-            <br>
-            <br>
-            Holaaaa
-        </h2>
         <!-- ***************** Barra de navegacion ********************-->
         <nav class="navbar navbar-expand-sm navbar-custom scrolling-navbar fixed-top">
             <div class="container">
-    
+
                 <a class="navbar-brand" href="#">
                     <img src="imagenes/logo_3.png" class="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-          
+        
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -85,12 +65,53 @@
                     </ul>
                     
                 </div>
-        
+
             </div>
             <button class="btnRegistro">Registrate</button>
         </nav>
 
-    <!-- ***************** Fin Barra de navegacion ********************-->
+        <!-- ***************** Fin Barra de navegacion ********************-->
+
+
+
+         <!-- ***************** Bannner ********************-->
+        <div class="banner" style="background-image: url(imagenes/landing_page/fondo.jpg);">
+
+
+            <!-- Animacion texto-->
+            <div class="banner_izquierda"> 
+               
+            </div>
+
+            <div class="contenedor-texto">
+                <!-- Forma #1 -->
+                <h2 class="titulo">Ve el mundo...<br>  <span class="typed"></span></h2>
+           </div>
+
+            <div class="banner_derecha">
+                <lottie-player src="imagenes/landing_page/avioncito.json" background="transparent"  speed="1"   loop autoplay></lottie-player>
+            </div>
+
+            <div class="clouds">
+                <img src="imagenes/landing_page/cloud1.png" style="--i:1;">
+                <img src="imagenes/landing_page/cloud2.png" style="--i:2;">
+                <img src="imagenes/landing_page/cloud3.png" style="--i:3;">
+                <img src="imagenes/landing_page/cloud4.png" style="--i:4;">
+                <img src="imagenes/landing_page/cloud5.png" style="--i:5;">
+            </div>
+        
+        </div>
+
+         <!-- ***************** Fin Banner ********************-->
+
+         
+
+        <h2>
+            <br>
+            <br>
+            Holaaaa
+        </h2>
+       
 
 
 
@@ -105,6 +126,9 @@
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
    <!-- MDB core JavaScript -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+   <script src="js/animacion_escritura.js"></script>
 </body>
 
 </html>

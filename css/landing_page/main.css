@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
 
 
 *{
@@ -36,7 +37,7 @@ nav{
 
 
 .navbar-brand img{
-    width: 30%; 
+    width: 40%; 
     text-align: left;
 }
 
@@ -74,6 +75,31 @@ nav{
     background-position: bottom;
 }
 
+.banner_izquierda{
+    margin-top: 5%;
+    position: absolute;
+    top:20%;
+    left:0;
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.banner_derecha{
+    margin-top: -15%;
+    left:0;
+    width: 50%;
+    height: 100%;
+    float: right;
+    color: yellow;
+}
+
+.contenedor-texto{
+    color: white;
+    margin-left: 10%;
+    font-family: 'Nerko One', cursive;
+    font-size: 50%;
+}
+
 .clouds{
     position: absolute;
     top:0;
@@ -91,9 +117,9 @@ nav{
 }
 @keyframes animate{
     0%{
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
     100%{
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
 }
