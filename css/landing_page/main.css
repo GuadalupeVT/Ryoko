@@ -1,9 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     
 }
+
+nav{
+    height: 15%;
+}
+.navbar-custom {
+    background:rgba(255, 255, 255, 0);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: white;
+    font-size: 110%;
+    font-family: 'Space Mono', monospace;
+}
+.navbar-custom .nav-item.active .nav-link{
+    color: white; 
+    font-family: 'Oswald', sans-serif;
+}
+.navbar-custom .nav-item:hover .nav-link {
+    color: orange;
+}
+
+
+.navbar-brand img{
+    width: 40%; 
+    text-align: left;
+}
+
+
+.top-nav-collapse{
+    background: black !important;
+    
+  }
 
 .banner{
     height: 900px;
@@ -27,7 +68,7 @@
     position: absolute;
     bottom: 0;
     max-width: 200%;
-    animation:  animate calc(8s* var(--i)) linear infinite;
+    animation:  animate calc(15s* var(--i)) linear infinite;
 }
 @keyframes animate{
     0%{
