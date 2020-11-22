@@ -10,35 +10,25 @@
     
 }
 
-nav{
-    height: 15%;
-}
-.navbar-custom {
-    background:rgba(255, 255, 255, 0);
-}
+.top-nav-collapse{
+    background: black !important;
+  }
 
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-    color: rgba(255,255,255,.8);
-}
-
-.navbar-custom .navbar-nav .nav-link {
+.navbar-dark{
     color: white;
     font-size: 110%;
     font-family: 'Space Mono', monospace;
+    
 }
-.navbar-custom .nav-item.active .nav-link{
+.navbar-dark a:hover  {
+    color: orange;
+    background-color: rgba(243, 240, 234, 0.555);
+}
+
+.navbar-dark .nav-item.active .nav-link{
     color: white; 
     font-family: 'Oswald', sans-serif;
-}
-.navbar-custom .nav-item:hover .nav-link {
-    color: orange;
-}
-
-
-.navbar-brand img{
-    width: 40%; 
-    text-align: left;
+    background-color: rgba(218, 22, 22, 0.555);
 }
 
 nav .btnRegistro{
@@ -60,11 +50,24 @@ nav .btnRegistro{
     background-color: #9b0000;
 }
 
+.navbar-brand img{
+    width: 50%; 
+    text-align: left;
+}
 
-.top-nav-collapse{
-    background: black !important;
-    
-  }
+@media(max-width: 1000px){
+    nav{
+        background-color: black;
+    }
+    .navbar-brand img{
+        width: 20%; 
+        text-align: left;
+    }
+    .navbar-toggler{
+        margin-left: 85%;
+        margin-top: -10%;
+    }
+}
 
 .banner{
     height: 900px;
@@ -139,16 +142,16 @@ nav .btnRegistro{
 
 .box {
     width: 60%;
-    padding: 40px;
+    padding: 10%;
     position: absolute;
    
     background: #fffdfde7;
     margin-left: 15%;
     text-align: center;
     transition: 0.25s;
-    margin-top: 100px;
+    margin-top: 10%;
     color: black;
-    border-radius: 24px;
+    border-radius: 5%;
 }
 
 .box input[type="text"],
@@ -156,15 +159,15 @@ nav .btnRegistro{
     border: 0;
     background: none;
     display: block;
-    margin: 20px auto;
+    margin: 5% auto;
     text-align: center;
     border: 2px solid #9b0000;
-    padding: 10px 10px;
-    width: 250px;
+    padding: 5% 5%;
+    width: 80%;
     outline: none;
     color:black;
     border-radius: 24px;
-    transition: 0.25s
+    transition: 0.25s;
 }
 
 .box h1 {
@@ -177,7 +180,7 @@ nav .btnRegistro{
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
-    width: 300px;
+    width: 90%;
     border-color: rgba(231, 83, 29, 0.911);
 }
 
@@ -185,10 +188,10 @@ nav .btnRegistro{
     border: 0;
     background: black;
     display: block;
-    margin: 20px auto;
+    margin: 10% auto;
     text-align: center;
     border: 2px solid black;
-    padding: 14px 40px;
+    padding: 5% 15%;
     outline: none;
     color: white;
     border-radius: 24px;
@@ -214,7 +217,7 @@ ul.social-network {
 
 ul.social-network li {
     display: inline;
-    margin: 0 5px;
+    margin: 0 2%;
 }
 
 .social-network a.icoFacebook:hover {
