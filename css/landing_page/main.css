@@ -1,3 +1,12 @@
+ /* 1. Barra de Navegacion
+    2. Diseño responsivo barra y banner
+    3. Banner
+    4. Texto animado
+    5. Nubes
+    6.Login
+ */ 
+
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
@@ -9,7 +18,12 @@
     box-sizing: border-box;
     
 }
-
+ /* ------------------------
+  1. Barra de Navegacion
+     -----------------------*/
+nav{
+    z-index: 100;
+}
 .top-nav-collapse{
     background: black !important;
   }
@@ -55,6 +69,9 @@ nav .btnRegistro{
     text-align: left;
 }
 
+ /* ------------------------
+  2. Diseño responsivo barra y banner
+     -----------------------*/
 @media(max-width: 1000px){
     nav{
         background-color: black;
@@ -95,6 +112,9 @@ nav .btnRegistro{
 
 }
 
+ /* ------------------------
+  3. Banner
+     -----------------------*/
 .banner{
     height: 900px;
     position: relative;
@@ -129,6 +149,9 @@ nav .btnRegistro{
     
 }
 
+ /* ------------------------
+  4. Texto animado
+     -----------------------*/
 .contenedor-texto{
     color: white;
     margin-left: 10%;
@@ -141,6 +164,10 @@ nav .btnRegistro{
     font-weight: 10%;
     font-size: 250%;
 }
+
+/* ------------------------
+  5. Nubes
+     -----------------------*/
 
 .clouds{
     position: absolute;
@@ -166,7 +193,9 @@ nav .btnRegistro{
     }
     
 }
-
+/* ------------------------
+  6. Login
+     -----------------------*/
 .box {
     width: 80%;
     padding: 10%;
