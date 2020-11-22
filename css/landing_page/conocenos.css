@@ -5,7 +5,6 @@
 }
 
 .conocenos .box{
-    position: relative;
     width: 350px;
     padding: 40px;
     background: #fff;
@@ -17,6 +16,7 @@
     left: 7%;
     overflow: hidden; 
     text-align: center;  
+    position: relative;
 }
 
 .conocenos .box::before{
@@ -97,4 +97,14 @@
 .conocenos .box .content p{
     margin: 0;
     padding: 0;
+}
+/*reponsive*/
+@media(max-width: 1000px){
+
+    .conocenos{
+        display: block !important;
+        width: 100%;
+        
+    }
+
 }
