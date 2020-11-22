@@ -67,6 +67,32 @@ nav .btnRegistro{
         margin-left: 85%;
         margin-top: -10%;
     }
+    .contenedor-texto{
+        display:none !important;
+        clear: both;
+        
+    }
+    .banner_derecha {
+        display:none !important;
+        clear: both;
+    }
+
+    .banner_izquierda { 
+       min-width: 100%;
+       z-index: 100;
+       top: -20%;
+       left: 20%;
+       text-align: center;
+    }
+
+    .box h1 {
+        color:black;
+        text-transform: uppercase;
+        font-weight: 10%;
+        font-family: 'Oswald', sans-serif;
+        font-size: 100%;
+    }
+
 }
 
 .banner{
@@ -80,13 +106,13 @@ nav .btnRegistro{
 
 .banner_izquierda{
     margin-top: 0%;
-    position: absolute;
-    top:10%;
+    top:30%;
     width: 50%;
     height: 100%;
     float: left;
     z-index: 100;
 }
+
 
 .banner_derecha{
     margin-top: -10%;
@@ -97,6 +123,7 @@ nav .btnRegistro{
 }
 
 .banner_derecha lottie-player{
+    position: relative;
     margin-top: -50%;
     margin-left: -2%;
     
@@ -107,7 +134,6 @@ nav .btnRegistro{
     margin-left: 10%;
     margin-top: 40%;
     margin-left: 25%;
-    
     
 }
 .typed{
@@ -138,20 +164,22 @@ nav .btnRegistro{
     100%{
         transform: translateX(-100%);
     }
+    
 }
 
 .box {
-    width: 60%;
+    width: 80%;
     padding: 10%;
-    position: absolute;
-   
+    position: relative;
+    height: 60%;
     background: #fffdfde7;
-    margin-left: 15%;
+    margin-left: 10%;
     text-align: center;
     transition: 0.25s;
-    margin-top: 10%;
+    margin-top: 30%;
     color: black;
     border-radius: 5%;
+    z-index: 100;
 }
 
 .box input[type="text"],
@@ -163,7 +191,7 @@ nav .btnRegistro{
     text-align: center;
     border: 2px solid #9b0000;
     padding: 5% 5%;
-    width: 80%;
+    width: 90%;
     outline: none;
     color:black;
     border-radius: 24px;
@@ -180,7 +208,7 @@ nav .btnRegistro{
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
-    width: 90%;
+    width: 100%;
     border-color: rgba(231, 83, 29, 0.911);
 }
 
