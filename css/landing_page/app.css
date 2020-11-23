@@ -8,6 +8,23 @@
     margin-top: 5%;
 }
 
+.app::after{ 
+    position: relative;
+    content: '';
+    width: 150px;
+    height: 150px;
+    background:#a4152c;
+    bottom: 0;
+    right: 45%;
+    top: 0px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid white;
+}
+
+
+
+
 .app .izquierda{
     margin-top: 0%;
     top:30%;
