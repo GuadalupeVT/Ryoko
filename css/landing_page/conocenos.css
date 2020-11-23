@@ -111,5 +111,19 @@
         height: 200%;
         margin-top: 5%;
     }
+    .conocenos .box{
+        width: 300px;
+        padding: 40px;
+        background: #fff;
+        margin-top: 40%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        border-radius: 4px;
+        margin: 20px;
+        box-sizing: border-box;
+        left: 2%;
+        overflow: hidden; 
+        text-align: center;  
+        position: relative;
+    }
 
 }
