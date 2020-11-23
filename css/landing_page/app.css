@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+.app{
+    background-color:#a4152c;
+    display: flex;
+    flex: wrap;
+    width:100%;
+    height: 120vh;
+    margin-top: 5%;
+}
+
+.app .izquierda{
+    margin-top: 0%;
+    top:30%;
+    width: 50%;
+    height: 100%;
+    float: left;
+    z-index: 100;
+}
+
+
+.app .derecha{
+    margin-top: 00%;
+    left:0;
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+
+.app .derecha h2{
+    z-index: 50;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    margin-top: 30%;
+    margin-left: 35%;
+    font-size: 250%;
+}
+
+.app .derecha p{
+    color: white;
+    margin-top: -2%;
+    margin-left: 5%;
+    padding: 50px;
+    font-size: 150%;
+    text-align: justify;
+}
+
+.app .derecha img{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: -10%;
+}
+
+.app .izquierda .img_3{
+    width: 350px;
+    padding: 40px;
+    margin-top: 5%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    left: 0%;
+    overflow: hidden; 
+    text-align: center;  
+    position: absolute; 
+     z-index: 1;
+}
+
+.app .izquierda .img_2{
+    width: 350px;
+    padding: 40px;
+    margin-top: 10%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    left: 10%;
+    overflow: hidden; 
+    text-align: center;  
+    position: absolute; 
+     z-index: 1;
+}
+
+.app .izquierda .img_1{
+    width: 350px;
+    padding: 40px;
+    margin-top: 15%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    left: 20%;
+    overflow: hidden; 
+    text-align: center;  
+    position: absolute; 
+     z-index: 1;
+}
+
+
+.app .izquierda img{
+    width: 100%;
+}
