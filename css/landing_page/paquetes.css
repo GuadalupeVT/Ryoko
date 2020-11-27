@@ -200,3 +200,11 @@
   .pricing1 .pricing .yearly {
     display: none;
   }
+
+  @media(max-width: 800px){
+
+    .paquetes{
+        width: 100%;
+        height: 200%;
+  }
+}

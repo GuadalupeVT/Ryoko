@@ -136,13 +136,13 @@
     .contact{
         padding: 50px;
     }
-    .contenedor{
-        flex-direction: column;
+    .contact .container{
+        flex-direction: column !important;
     }
-    .contenedor.contactInfo{
+    .contact .container .contactInfo{
         margin-bottom: 40px;
     }
-    .contenedor .contactInfo,
+    .contact .container .contactInfo,
     .contactForm{
         width: 100%;
     }

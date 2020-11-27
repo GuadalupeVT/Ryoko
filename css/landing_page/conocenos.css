@@ -1,17 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .conocenos{
     display: flex;
     flex: wrap;
     width:100%;
     height: 100vh;
-    margin-top: 5%;
+    margin-top: 0;
+}
+
+.conocenos_titulo{
+    align-content: center;
+    text-align: center;
+    font-weight: 100%;
+    font-size: 100px;
+    padding-top: 10%;
+    font-family: 'Lobster', cursive;
+    color: black;
+
+    text-shadow:  0.05em 0 0 rgba(136, 16, 16, 0.76);
 }
 
 .conocenos .box{
     width: 350px;
     padding: 40px;
     background: #fff;
-    margin-top: 40%;
+    margin-top: 20%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
     border-radius: 4px;
     margin: 20px;
@@ -126,5 +139,7 @@
         text-align: center;  
         position: relative;
     }
+
+   
 
 }
