@@ -117,6 +117,8 @@
     width: 100%;
 }
 
+
+
 @media(max-width: 1000px){
 
     .app{
@@ -130,9 +132,9 @@
         display:none !important;
     }
     .app .derecha img{
-        width: 100%;
-        margin-left: -10%;
-        margin-top: 250%;
+        width: 70%;
+        margin-left: 30%;
+        margin-top: 100%;
     }
 
     .app .izquierda .img_3{

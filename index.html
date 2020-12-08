@@ -54,8 +54,8 @@
             
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#" id="h">Home </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#conocenos">Conocenos</a>
@@ -73,7 +73,7 @@
                             <a class="nav-link" href="#contacto">Contacto</a>
                         </li>
                     </ul>
-                    <button class="btnRegistro">Registrate</button>
+                    <button class="btnRegistro"><a href="vista/registro.html">Registrate</a></button>
                 </div>
         
             </div>
@@ -83,10 +83,10 @@
 
         <!-- ***************** Fin Barra de navegacion ********************-->
 
-
+<div data-spy="scroll">
 
          <!-- ***************** Bannner ********************-->
-        <div class="banner" style="background-image: url(imagenes/landing_page/fondo.jpg);">
+        <section class="banner" style="background-image: url(imagenes/landing_page/fondo.jpg);" id="banner">
 
 
             <!-- Formulario de registro-->
@@ -119,15 +119,15 @@
                 <img src="imagenes/landing_page/cloud5.png" style="--i:5;">
             </div>
         
-        </div>
+        </section>
 
          <!-- ***************** Fin Banner ********************-->
 
          <!-- **************************CONOCENOS ********************-->
 
-         <div class="conocenos_titulo" name="conocenos" id="conocenos">
+         <section class="conocenos_titulo" name="conocenos" id="conocenos">
            <h1>¿Quienes somos?</h1>
-         </div>
+         </section>
 
         <div class="conocenos" >
             <div class="box">
@@ -172,7 +172,7 @@
          <br>
 
          <!--**************************INICIO APLICACIONES*********************-->
-         <div class="app" name="app" id="app">
+         <section class="app" name="app" id="app">
              <div class="izquierda">
               <h1>Tambien estamos para tu telefono celular</h1>
                  <div class="img_3"><img src="imagenes/landing_page/screenshoots/3.jpeg"></div>
@@ -190,11 +190,11 @@
                  <a><img src="imagenes/landing_page/app_3.png"></a>
              </div>
             
-        </div>
+         </section>
         <!--************************** FIN INICIO APLICACIONES*********************-->
 
         <!-- $$$$$$$$$$$$$$$$$$$$$$$ INICIO PAQUETES $$$$$$$$$$$$$$$$$$$$$$-->
-        <div class="paquetes" name="paquetes" id="paquetes">
+        <section class="paquetes" name="paquetes" id="paquetes">
 
             <div class="pricing1 py-5 bg-light">
                 <div class="container">
@@ -330,11 +330,11 @@
                 </div>
               </div>
 
-        </div>
+        </section>
      <!-- $$$$$$$$$$$$$$$$$$$$$$$ FIN PAQUETES $$$$$$$$$$$$$$$$$$$$$$-->   
      
      <!-- #################################### INICIA COMUNIDAD #####################-->
-     <div class="comunidad" id="comunidad" name="comunidad"> 
+     <section class="comunidad" id="comunidad" name="comunidad"> 
         <section class="spacer">
             <div class="testimonial-section">
                 <div class="testi-user-img">
@@ -438,12 +438,12 @@
                 </div>
             </div>
         </section>
-     </div>
+     </section>
 
      <!-- #################################### FIN COMUNIDAD #####################-->
 
      <!-- ********************************* INICIA CONTACTO ********************-->
-     <div class="contacto" name="contacto" id="contacto" style="background-image: url(imagenes/landing_page/contacto.jpg);">
+     <section class="contacto" name="contacto" id="contacto" style="background-image: url(imagenes/landing_page/contacto.jpg);">
       <section class="contact" >
         <div class="content">
           <p></p>
@@ -507,9 +507,9 @@
        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
       </ul>
     </div>
-     </div>
+     </section>
 
-    
+    </div>
 
      <!-- Footer -->
 <footer class="page-footer font-small blue" style="background-color: black !important;">
@@ -540,6 +540,7 @@
    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
    <script src="js/animacion_escritura.js"></script>
    <script src="js/animacion_paquetes.js"></script>
+   <script src="js/animacion_navbar.js"></script>
    <script type="module" src="js/animacion_comunidad.js"></script>
    <script src="https://md-aqil.github.io/images/swiper.min.js"></script>
    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
