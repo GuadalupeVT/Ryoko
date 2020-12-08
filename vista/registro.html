@@ -6,11 +6,15 @@
         <meta name="description" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="google-signin-client_id" content="362692540628-9frn6nckr9jrahfko4ngab9j0nds5djb.apps.googleusercontent.com">
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link href="../css/registro/registro.css" rel="stylesheet" type="text/css">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+        
+        <link href="../controlador/php/registro/google.php">
 
          <!-- Titulo -->
          <title>RYOKŌ TRAVELS</title>
@@ -50,7 +54,7 @@
                      <!-- Email Address -->
                      <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
@@ -60,7 +64,7 @@
                      <!-- Password -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
@@ -70,7 +74,7 @@
                     <!-- First Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
@@ -80,7 +84,7 @@
                     <!-- Last Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
@@ -90,7 +94,7 @@
                     <!-- Last Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
@@ -108,7 +112,9 @@
                             </span>
                         </div>
                         <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted" required>
-                            <option value="">+12</option>
+                            <option value="">+55</option>
+                            <option value="">+54</option>
+                            <option value="">+52</option>
                             <option value="">+10</option>
                             <option value="">+15</option>
                             <option value="">+18</option>
@@ -158,6 +164,8 @@
                     </button>
                     </div>
 
+                   
+
                     <!-- Divider Text -->
                     <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
                         <div class="border-bottom w-100 ml-5"></div>
@@ -165,14 +173,11 @@
                         <div class="border-bottom w-100 mr-5"></div>
                     </div>
 
-                    <!-- Social Login -->
-                    <div class="form-group col-lg-12 mx-auto">
-                        <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                            <i class="fa fa-facebook-f mr-2"></i>
-                            <span class="font-weight-bold">Continua con Google</span>
-                        </a>
-                    </div>
+                    
 
+                    <!--Registro con google-->
+                   <div id="my-signin2" class="col-lg-8 mx-2" style="padding-left: 25%;" data-onsuccess="onSignIn"></div>
+            
                     <!-- Already Registered -->
                     <div class="text-center w-100">
                         <p class="text-muted font-weight-bold">¿Ya tienes una cuenta? <a href="../index.html" class="text-primary ml-2">Inicia sesión</a></p>
@@ -183,7 +188,7 @@
         </div>
     </div>
 </div>
-
+<script src="../js/registro.js"></script>
 
     </body>
 </html>
