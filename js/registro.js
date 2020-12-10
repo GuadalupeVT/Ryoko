@@ -1,7 +1,7 @@
 function onSuccess(googleUser) {
     $("#email").val(googleUser.getBasicProfile().getEmail());
     $("#firstName").val(googleUser.getBasicProfile().getGivenName());
-    $("#lastName").val(googleUser.getBasicProfile().getFamilyName());
+    $("#lastname").val(googleUser.getBasicProfile().getFamilyName());
 
     }
     function onFailure(error) {
