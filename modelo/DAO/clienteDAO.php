@@ -1,7 +1,7 @@
 <?php
-  include('../../controlador/conexion_bd.php');
+  include_once('../../controlador/conexion_bd.php');
 
-  class AlumnoDAO{
+  class ClienteDAO{
       //===============METODOS PARA ABCC ===============
 
       //------------ ALTAS ------------
@@ -11,9 +11,9 @@
         $result = $cc->db->prepare($sql); 
         $params = array(':id'=> $id_Cliente, ':nomb'=>$nombre, ':pApellido'=>$primerAp, ':sApellido'=>$segundoAp, ':fnac'=>$fechaNac, ':tel'=>$telefono);   
         if($result->execute($params)){
-            echo "Insertado";
+            return 1;
         }  else{
-            echo"No se inserto :(";
+            return 0;
         }
 
       }//agregar

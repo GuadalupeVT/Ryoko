@@ -75,6 +75,13 @@ nav .btnRegistro{
   2. Diseño responsivo barra y banner
      -----------------------*/
 @media(max-width: 1000px){
+
+    .inicio{
+        align-content: center !important;
+        display: block !important;
+        margin-left: 0 !important;
+    }
+
     nav{
         background-color: black;
     }
@@ -266,7 +273,16 @@ nav .btnRegistro{
 .forgot {
     text-decoration: underline;
 }
+.inicio{
+    align-content: center !important;
+    display: block !important;
+    margin-left: 16%;
+}
 
+.my-signin2{
+    align-content: center !important;
+    
+}
 ul.social-network {
     list-style: none;
     display: inline;

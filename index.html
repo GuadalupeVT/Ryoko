@@ -6,6 +6,7 @@
         <meta name="description" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="google-signin-client_id" content="362692540628-9frn6nckr9jrahfko4ngab9j0nds5djb.apps.googleusercontent.com">
         
 
         <!-- Titulo -->
@@ -34,7 +35,9 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://md-aqil.github.io/images/swiper.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    </head>
+        
+    
+      </head>
     <body>
 
      
@@ -91,14 +94,13 @@
 
             <!-- Formulario de registro-->
             <div class="banner_izquierda"> 
-                <form class="box">
+                <form class="box" method="POST" action="controlador/landing/validar_usuario.php">
                     <h1>Iniciar Sesión</h1>
-                    <p class="text-muted"> </p> <input type="text" name="" placeholder="Username"> <input type="password" name="" placeholder="Password"> <a class="forgot text-muted" href="#">Forgot password?</a> <input type="submit" name="" value="Login" href="#">
-                    <div class="col-md-12">
-                        <ul class="social-network social-circle">
-                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
-                        </ul>
+                    <p class="text-muted"> </p> <input type="text" name="correo" id="correo" placeholder="Correo"> <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña"> <input type="submit" name="" value="Login" href="#">
+                    <div class="inicio col-md-12">
+                      <div id="my-signin2"></div>
                     </div>
+                    
                 </form>
             </div>
 
@@ -529,6 +531,7 @@
 
        
    <!-- JQuery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <!-- Bootstrap tooltips -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -538,6 +541,8 @@
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+   <script src="js/inicio_google.js"></script>
+   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
    <script src="js/animacion_escritura.js"></script>
    <script src="js/animacion_paquetes.js"></script>
    <script src="js/animacion_navbar.js"></script>

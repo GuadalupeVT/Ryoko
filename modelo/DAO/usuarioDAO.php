@@ -8,17 +8,13 @@
       //------------ ALTAS ------------
       public function agregarUsuario($usuario, $contraseña, $tipo){
         $cc = ConexionBD::getConexion(); 
-        
-        
         $sql = "INSERT INTO usuarios VALUES (sha1(:user), sha1(:cont), :tp)";
-        
-
         $result = $cc->db->prepare($sql); 
         $params = array(':user'=> $usuario, ':cont'=>$contraseña, ':tp'=>$tipo); 
         if($result->execute($params)){
-            echo "Insertado";
+            return 1;
         }  else{
-            echo"No se inserto :(";
+            return 0;
         }
         
        
@@ -51,6 +47,29 @@
             echo "No se modifico";
         }
     }//modificar
+
+    //Validacion
+    public function validarUsuario($correo,$contraseña){
+        $cc = ConexionBD::getConexion();
+        $sql = "SELECT * FROM usuarios WHERE usuario=sha1(:user) AND contraseña=sha1(:pass);";        
+        $result = $cc->db->prepare($sql); 
+        $params = array(':user'=> $correo, ':pass'=>$contraseña);
+        $result->execute($params); 
+        $affected_rows = $result->fetchColumn(); 
+        return ($affected_rows); 
+        //retorna numerico 
+    }
+
+    public function validarUsuarioGoogle($correo){
+        $cc = ConexionBD::getConexion();
+        $sql = "SELECT * FROM usuarios WHERE usuario=sha1(:user);";        
+        $result = $cc->db->prepare($sql); 
+        $params = array(':user'=> $correo);
+        $result->execute($params); 
+        $affected_rows = $result->fetchColumn(); 
+        return ($affected_rows); 
+        //retorna numerico 
+    }
 
   }
 ?>

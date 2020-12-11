@@ -1,5 +1,4 @@
-<?php
-    include('../conexion_bd.php');
+<?php 
 
     $secret = "6Lcb__8ZAAAAAKXM4J42B_lsWnT3nIR4J5MuEGQh";
 
@@ -39,60 +38,53 @@
                 $telefono = $_POST['phoneNumber'];
                 
                 $cliente = $_POST['cliente'];
-                $hotel = $_POST['hotel'];
-                $transporte = $_POST['transporte'];
         
         //Verificacion de datos
-                if(false){
-                    echo "<p style='color:red;'>campos vacios</p>";
+                if(empty($correo) || empty($nombre) || empty($primerAp) || empty($segundoAp) || empty($fecha_nac) || empty($telefono)){
+                    echo "No puede dejar campos vacios";
+                    
                 }else{
-        
-                $correo_cifrado = sha1($correo);
-                $contraseña_cifrada = sha1($contraseña);
-        
-        
-                //$sql = "SELECT * FROM usuarios WHERE usuario='$correo_cifrado'";
-        
-                //$res = mysqli_query($conexion, $sql);
-        
-               // if(mysqli_num_rows($res)==1){
-                   // echo "<p style='color:green;'>Ya existe usuario</p>";
-               // }else{
-                    //Verificar cuales casillas se marcaron
-                    $tipo="";
-                    if(!empty($cliente)){
-                        $tipo ="1";
-                    }
-                    if(!empty($hotel)){
-                        $tipo =$tipo."2";
-                    }
-                    if(!empty($transporte)){
-                        $tipo =$tipo."3";
-                        
-                    }
-                    /*
-                    $sql2="INSERT INTO usuarios VALUES(sha1('$correo'), sha1('$contraseña'), '$tipo')";
-                    $sql3="INSERT INTO cliente VALUES(sha1('$correo'), '$nombre', '$primerAp', '$segundoAp', '$fecha_nac', '$telefono')";
-                    if(mysqli_query($conexion, $sql2)  ){
-                        if(mysqli_query($conexion, $sql3) ){
-                        header('location:../../../index.html');
-                        }else{
-                            echo $sql2;
-                            echo $sql3;
-                            echo "No se pudo insertar cliente";
-                        }
-                    }else{
-                        echo $sql2;
-                        echo $sql3;
-                        echo "No se pudo insertar";
-                    }
-                    */
-                    require_once("../../modelo/DAO/usuarioDAO.php");  
-                    
+                    require_once("../../modelo/DAO/usuarioDAO.php"); 
                     $uDAO = new UsuarioDAO();
+                    $res=$uDAO->validarUsuarioGoogle($correo);
+                    if($res>1){
+                       echo "<script>
+                                alert('Ese usuario ya existe');
+                                window.location.href='../../vista/registro.html';
+                                console.log('$correo');
+                             </script>";
+                   }else{
+                        //Verificar cuales casillas se marcaron
+                        $tipo="";
+                        if(!empty($cliente)){
+                            $tipo ="1";
+                        }
+                        if(!empty($_POST['hotel'])){
+                            $tipo =$tipo."2";
+                        }
+                        if(!empty($_POST['transporte'])){
+                            $tipo =$tipo."3";     
+                        }
 
-                    
-                    $uDAO->agregarUsuario($correo,$contraseña,$tipo);
+                        //Se agrega usuario y cliente
+                        $agregarUsuario=$uDAO->agregarUsuario($correo,$contraseña,$tipo);
+                        include_once("../../modelo/DAO/clienteDAO.php");  
+                        $cDAO=new ClienteDAO();
+                        $agregarCliente=$cDAO->agregarCliente($correo,$nombre,$primerAp,$segundoAp,$fecha_nac,$telefono);
+                        
+                        if($agregarUsuario===1 && $agregarCliente===1){
+                            echo "<script>
+                                alert('usuario registrado');
+                                window.location.href='../../index.html';
+                             </script>";
+                        }else if($agregarUsuario===0 && $agregarCliente===0){
+                            echo "<script>
+                                alert('Ocurrio un error, intentalo mas tarde');
+                                window.location.href='../../vista/registro.html';
+                             </script>";
+                        }
+                   }
+
                    
                 }
         
