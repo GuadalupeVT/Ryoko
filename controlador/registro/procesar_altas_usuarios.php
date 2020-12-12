@@ -41,7 +41,19 @@
         
         //Verificacion de datos
                 if(empty($correo) || empty($nombre) || empty($primerAp) || empty($segundoAp) || empty($fecha_nac) || empty($telefono)){
-                    echo "No puede dejar campos vacios";
+                    session_start();
+                            $_SESSION['correo'] = $correo;
+                            $_SESSION['nombre'] = $nombre;
+                            $_SESSION['primerAp']=$primerAp;
+                            $_SESSION['segundoAp']=$segundoAp;
+                            $_SESSION['fecha_nac']=$fecha_nac;
+                            $_SESSION['telefono']=$telefono;
+                            
+                       echo "<script>
+                                alert('No se pueden dejar campos vacios');
+                                window.location.href='../../vista/registro.php';
+                                console.log('$correo');
+                             </script>";
                     
                 }else{
                     require_once("../../modelo/DAO/usuarioDAO.php"); 
