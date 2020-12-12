@@ -7,14 +7,19 @@ $contraseña = $_POST['contraseña'];
 $uDAO = new UsuarioDAO();
 
                     
-$res=$uDAO->validarUsuario($correo,$contraseña);
+ if(empty($res=$uDAO->validarUsuario($correo,$contraseña))){
+      echo "<script> alert('Ese usuario no existe'); </sctipt>";
+      header("location:../../index.html");
+ }else{
+     echo "Si hay";
+     session_start();
+     $_SESSION['autenticado'] = true;
+     $_SESSION['usuario'] = $correo;
+     header("location:../../vista/dashboard/dashboard.php");
+ }
 
-if($res>1){
-    echo "Si existe";
-}else{
-    echo "Error";
     
-}
+
 
 
 ?>

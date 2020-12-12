@@ -51,13 +51,13 @@
     //Validacion
     public function validarUsuario($correo,$contraseña){
         $cc = ConexionBD::getConexion();
-        $sql = "SELECT * FROM usuarios WHERE usuario=sha1(:user) AND contraseña=sha1(:pass);";        
+        $sql = "SELECT * FROM usuarios WHERE usuario=sha1('".$correo."') AND contraseña=sha1('".$contraseña."');";        
         $result = $cc->db->prepare($sql); 
-        $params = array(':user'=> $correo, ':pass'=>$contraseña);
-        $result->execute($params); 
-        $affected_rows = $result->fetchColumn(); 
+        $params = array(':user'=> $correo,':pass'=>$contraseña);
+        $result->execute(); 
+        $affected_rows = $result->fetchAll(PDO::FETCH_ASSOC);
         return ($affected_rows); 
-        //retorna numerico 
+        //retorna numerico
     }
 
     public function validarUsuarioGoogle($correo){

@@ -1,3 +1,27 @@
+function ingresar(){
+  $correo=document.getElementById('correo').value;
+  $contraseña=document.getElementById('contraseña').value;
+       
+  $.ajax({
+    data:  {'correo':$correo, 'contraseña':$contraseña},
+    url:   'controlador/landing/validar_usuario.php',
+    dataType: 'html',
+    type:  'post',
+    beforeSend: function () {
+        
+    },
+    success:  function (response) {
+      alert(response);
+            if(response==1){
+              window.location.href='vista/dashboard/dashboard.php';
+            }else{
+              alert("Ese usuario no existe");
+            }
+    }
+});
+}
+
+
 function onSuccess(googleUser) {
 
     $correo= googleUser.getBasicProfile().getEmail();
@@ -15,15 +39,8 @@ function onSuccess(googleUser) {
                 }else{
                   alert("Ese usuario no existe");
                 }
-          
-            
-            
-
         }
     });
-
-   
-
 
     console.log($correo);
 

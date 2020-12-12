@@ -77,7 +77,7 @@
 
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="dashboard_hotel.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
                     <span>Mis hoteles</span></a>
@@ -100,7 +100,7 @@
 
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="dashboard_transporte.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
                     <span>Mis transportes</span></a>
@@ -213,123 +213,51 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Transportes</h1>
-                        <a href="#addTransporte" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalRegisterForm" onclick="limpiar();">
+                        <h1 class="h3 mb-0 text-gray-800">Hoteles</h1>
+                        <a href="#addTransporte" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalRegisterForm">
                         <i class="icon ion-md-add"></i> Agregar</a>
                     </div>
 
-                   
-                   
-                    <table class="table">
+                    <table class="table table-bordered table-striped" style="margin-top:20px;">
                         <thead class="thead-dark">
-                            <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Linea</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Costo</th>
-                            <th scope="col">Disponibilidad</th>
-                            <th scope="col">Acción</th>
-
-<?php
-require_once("../../modelo/DAO/transporteDAO.php"); 
-
-$tDAO = new TransporteDAO();
-
-                    
-$res=$tDAO->consultarTransportes();
-foreach ($res as $muestra) {
-
-    $id_t=$muestra['id_Transporte'];
-    $tp=$muestra['tipo'];
-    $ln=$muestra['linea'];
-    $ct=$muestra['costo'];
-    $tl=$muestra['telefono'];
-    $disp=$muestra['disponibilidad'];
-    echo '<tr>';
-
-    echo '<td >' . $id_t . '</td>';
-    echo '<td >' . $tp. '</td>';
-    echo '<td >' . $ln. '</td>';
-    echo '<td >' . $tl. '</td>';
-    echo '<td >' . $ct. '</td>';
-    echo '<td >' . $disp. '</td>';
-
-
-    echo '<td>
-
-              <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" onclick="modificar(`'.$id_t.'`,`'.$tp.'`,`'.$ln.'`,`'.$tl.'`,`'.$ct.'`,`'.$disp.'`);">
-              <i class="fas fa-edit"></i>
-              </a>
-              
-              <a class="btn btn-danger ajax-request" id="eliminar" onclick="eliminar(`'.$id_t.'`);"> 
-              <i class="fas fa-trash"></i>
-              </a>
-
-             </td>';
-    echo ' </tr>';
-
-}
-?>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Dirección</th>
+                            <th>Acción</th>
+                        </thead>
+                        <tbody>
                         </tbody>
-                        </table>
+                        <?php
+                        require_once("../../modelo/DAO/transporteDAO.php"); 
+                    
+                        $tDAO = new TransporteDAO();
+                        
+                                            
+                        $res=$tDAO->consultarTransportes();
+                        foreach ($res as $row) {
+                        ?>
+                                <tr>
+						    		<td><?php echo $row['id_Transporte']; ?></td>
+						    		<td><?php echo $row['tipo']; ?></td>
+						    		<td><?php echo $row['linea']; ?></td>
+						    		<td><?php echo $row['telefono']; ?></td>
+						    		<td>
+                                    <td>
+						    			<a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="fa fa-edit"></span> Editar</a>
+						    			<a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="fa fa-trash"></span> Eliminar</a>
+						    		</td>
+						    		<?php include('../../controlador/dashboard/hotel/edit_delete_modal_hotel.php'); ?>
+						    	</tr>
 
-                        <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header text-center">
-                                <h4 id="titulo" class="modal-title w-100 font-weight-bold">Agregar Transporte</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body mx-3">
-                                <div class="md-form mb-2">
-                                <label data-error="wrong" data-success="right" for="orangeForm-email">Id</label>
-                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" required>
-                                </div>
-                                <div class="md-form mb-2">
-                                <label data-error="wrong" data-success="right" for="orangeForm-email">Tipo</label>
-                                <select id="tipo" name="tipo" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                    <option value="Avión">Avión</option>
-                                    <option value="Camión">Camión</option>
-                                </select>
-                                </div>
+                       <?php }?>
 
-                                <div class="md-form mb-2">
-                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Linea</label>
-                                <input id="linea" type="text" name="linea" placeholder="Linea" class="form-control bg-white border-left-0 border-md" required>
-                                </div>
+                    </table>
 
-                                <div class="md-form mb-2">
-                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Telefono</label>
-                                <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="Telefono" class="form-control bg-white border-md border-left-0 pl-3" required>
-                                </div>
+                   
+                    <?php include('add_modal.php'); ?>
 
-                                <div class="md-form mb-2">
-                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Costo</label>
-                                <input id="costo" type="num" name="costo" placeholder="Costo" class="form-control bg-white border-md border-left-0 pl-3" required>
-                                </div>
 
-                                <div class="md-form mb-2">
-                                <label data-error="wrong" data-success="right" for="orangeForm-email">Disponibilidad</label>
-                                <select id="disponibilidad" name="disponibilidad" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                    <option value="Disponible">Disponible</option>
-                                    <option value="No disponible">No disponible</option>
-                                </select>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                                <button class="btn btn-primary btn-block py-2" id="btn_agregar_modificar">Agregar</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>          
-
-                            
-                           
                            
 
                         </div>
@@ -398,7 +326,7 @@ foreach ($res as $muestra) {
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="../../js/dashboard/transportes.js"></script>
+    <script src="../../js/dashboard/hotel.js"></script>
 
 </body>
 

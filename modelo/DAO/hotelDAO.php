@@ -52,5 +52,13 @@
         }
     }//modificar
 
+    public function consultarHoteles(){
+        require_once('../../controlador/conexion_bd.php');
+        $cc = ConexionBD::getConexion();
+        $busqueda=$cc->db->query("Select * from hotel");
+        /*Almacenamos el resultado de fetchAll en una variable*/
+        return $arrDatos=$busqueda->fetchAll(PDO::FETCH_OBJ);
+    }
+
   }
-?>
+ 
