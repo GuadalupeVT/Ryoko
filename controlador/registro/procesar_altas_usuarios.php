@@ -48,9 +48,17 @@
                     $uDAO = new UsuarioDAO();
                     $res=$uDAO->validarUsuarioGoogle($correo);
                     if($res>1){
+                        session_start();
+                            $_SESSION['correo'] = $correo;
+                            $_SESSION['nombre'] = $nombre;
+                            $_SESSION['primerAp']=$primerAp;
+                            $_SESSION['segundoAp']=$segundoAp;
+                            $_SESSION['fecha_nac']=$fecha_nac;
+                            $_SESSION['telefono']=$telefono;
+                            
                        echo "<script>
                                 alert('Ese usuario ya existe');
-                                window.location.href='../../vista/registro.html';
+                                window.location.href='../../vista/registro.php';
                                 console.log('$correo');
                              </script>";
                    }else{

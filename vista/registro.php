@@ -59,7 +59,7 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Correo" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="email" type="email" name="email" placeholder="Correo" class="form-control bg-white border-left-0 border-md" value="<?php  session_start(); if(isset($_SESSION['correo'])==1){echo $_SESSION['correo'];} ?>" required>
                     </div>
 
                      <!-- Password -->
@@ -79,7 +79,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="firstName" type="text" name="firstName" placeholder="Nombre" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="firstName" type="text" name="firstName" placeholder="Nombre" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['nombre'])==1){echo $_SESSION['nombre'];} ?>" required>
                     </div>
 
                     <!-- Last Name -->
@@ -89,7 +89,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="lastname" type="text" name="lastname" placeholder="Primer Apellido" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="lastname" type="text" name="lastname" placeholder="Primer Apellido" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['primerAp'])==1){echo $_SESSION['primerAp'];} ?>" required>
                     </div>
 
                     <!-- Last Name -->
@@ -99,7 +99,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="lastName2" type="text" name="lastName2" placeholder="Segundo Apellido" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="lastName2" type="text" name="lastName2" placeholder="Segundo Apellido" class="form-control bg-white border-left-0 border-md" value="<?php if(isset($_SESSION['segundoAp'])==1){echo $_SESSION['segundoAp'];} ?>" required>
                     </div>
 
 
@@ -112,7 +112,7 @@
                                 <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div>
-                        <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted" required>
+                        <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
                             <option value="">+55</option>
                             <option value="">+54</option>
                             <option value="">+52</option>
@@ -120,7 +120,7 @@
                             <option value="">+15</option>
                             <option value="">+18</option>
                         </select>
-                        <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="Telefono" class="form-control bg-white border-md border-left-0 pl-3" required>
+                        <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="Telefono" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['telefono'])==1){echo $_SESSION['telefono'];} ?>" required>
                     </div>
 
                     <!--Fecha de nacimiento-->
@@ -130,7 +130,7 @@
                                 <i class="fa fa-black-tie text-muted">Fecha de nacimiento</i>
                             </span>
                         </div>
-                        <input type="date" id="birthday" name="birthday" placeholder="Fecha de nacimiento" class="form-control bg-white border-md border-left-0 pl-3" required>
+                        <input type="date" id="birthday" name="birthday" placeholder="Fecha de nacimiento" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['fecha_nac'])==1){echo $_SESSION['fecha_nac'];} ?>" required>
                     </div>
 
                    <!--Tipo de usuario-->
@@ -195,3 +195,12 @@
 
     </body>
 </html>
+
+<?php
+    unset($_SESSION['correo']);
+    unset($_SESSION['nombre']);
+    unset($_SESSION['primerAp']);
+    unset($_SESSION['segundoAp']);
+    unset($_SESSION['fecha_nac']);
+    unset($_SESSION['telefono']);  
+?>
