@@ -33,16 +33,7 @@
                 alertify.confirm("Se eliminará Hotel con id:"+ id,
                     function() {
                       alertify.success('Ok');
-                      location.reload();
-                    },
-                    function() {
-                      alertify.error('Cancelar');
-                    }
-                  );
-
-                var opcion = confirm();
-                if (opcion == true) {
-                    $.ajax({
+                      $.ajax({
                         data:  {'id':id},
                         url:   '../../controlador/dashboard/hotel/bajas_hotel.php',
                         dataType: 'html',
@@ -61,8 +52,13 @@
                           );
                         }
                     });
-                } else {
-                }
+                    },
+                    function() {
+                      alertify.error('Cancelar');
+                    }
+                  );
+
+                
               },
 
               modificar:function(id,nombre,categoria,telefono,calle,numero,ciudad){
@@ -131,14 +127,23 @@ function limpiar(){
 }
 
 function agregar() {
-     $id=document.getElementById('id').value;
-     $nombre=document.getElementById('nombre').value;
+     $id=document.getElementById('id').value.trim();
+     $nombre=document.getElementById('nombre').value.trim();
      $categoria=$("#categoria option:selected").text();
-     $telefono=document.getElementById('phoneNumber').value;
-     $calle=document.getElementById('calle').value;
-     $numero=document.getElementById('numero').value;
-     $ciudad=document.getElementById('ciudad').value;
+     $telefono=document.getElementById('phoneNumber').value.trim();
+     $calle=document.getElementById('calle').value.trim();
+     $numero=document.getElementById('numero').value.trim();
+     $ciudad=document.getElementById('ciudad').value.trim();
      console.log($categoria);
+
+
+     if (isNaN($telefono)==true || $telefono.length!=10) {
+         
+         alert ('Telefono no valido!');
+        }else{
+            if (isNaN($numero)==true) {
+                alert ('Numero no valido!');
+               }else{
 
     $.ajax({
         data:  {'id':$id,'nombre':$nombre,'categoria':$categoria,'telefono':$telefono,'calle':$calle,'numero':$numero,'ciudad':$ciudad},
@@ -158,19 +163,22 @@ function agregar() {
                    alertify.error('Seguir aqui');
                  }
                );
-
+                
         }
+        
     });
+}
+}
 }
 
 function generarCambio() {
-    $id=document.getElementById('id').value;
-     $nombre=document.getElementById('nombre').value;
+    $id=document.getElementById('id').value.trim();
+     $nombre=document.getElementById('nombre').value.trim();
      $categoria=$("#categoria option:selected").text();
-     $telefono=document.getElementById('phoneNumber').value;
-     $calle=document.getElementById('calle').value;
-     $numero=document.getElementById('numero').value;
-     $ciudad=document.getElementById('ciudad').value;
+     $telefono=document.getElementById('phoneNumber').value.trim();
+     $calle=document.getElementById('calle').value.trim();
+     $numero=document.getElementById('numero').value.trim();
+     $ciudad=document.getElementById('ciudad').value.trim();
 
 
 
