@@ -3,8 +3,24 @@
     if($_SESSION['autenticado'] == false){
         header("location:../../index.html");
         echo $_SESSION['autenticado'];
+    } else {
+        // calculamos el tiempo transcurrido
+        $fechaGuardada = $_SESSION["ultimoAcceso"];
+        $ahora = date("Y-n-j H:i:s");
+        $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
+    
+        //comparamos el tiempo transcurrido
+         if($tiempo_transcurrido >= 600) {
+         //si pasaron 10 minutos o más
+          session_destroy(); // destruyo la sesión
+          header("location:../../index.html");//envío al usuario a la pag. de autenticación
+          //sino, actualizo la fecha de la sesión
+        }else {
+        $_SESSION["ultimoAcceso"] = $ahora;
+       }
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,7 +163,7 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                                aria-label="Search" aria-describedby="basic-addon2" id="buscar" name="buscar">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -191,7 +207,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario'];  ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -222,50 +238,111 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Hoteles</h1>
-                        <a href="#addTransporte" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalRegisterForm">
+                        <a href="#addTransporte" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalRegisterForm" onclick="limpiar();">
                         <i class="icon ion-md-add"></i> Agregar</a>
                     </div>
 
-                    <table class="table table-bordered table-striped" style="margin-top:20px;">
-                        <thead class="thead-dark">
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Dirección</th>
-                            <th>Acción</th>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <?php
-                        require_once("../../modelo/DAO/transporteDAO.php"); 
-                    
-                        $tDAO = new TransporteDAO();
-                        
-                                            
-                        $res=$tDAO->consultarTransportes();
-                        foreach ($res as $row) {
-                        ?>
-                                <tr>
-						    		<td><?php echo $row['id_Transporte']; ?></td>
-						    		<td><?php echo $row['tipo']; ?></td>
-						    		<td><?php echo $row['linea']; ?></td>
-						    		<td><?php echo $row['telefono']; ?></td>
-						    		<td>
-                                    <td>
-						    			<a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="fa fa-edit"></span> Editar</a>
-						    			<a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="fa fa-trash"></span> Eliminar</a>
-						    		</td>
-						    		<?php include('../../controlador/dashboard/hotel/edit_delete_modal_hotel.php'); ?>
-						    	</tr>
+ 
 
-                       <?php }?>
+<ul id="example-1">
+               
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Calle</th>
+                                <th scope="col">Número</th>
+                                <th scope="col">Ciudad</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                            <tr v-for="item in items">
+                                <td v-text="item.id_Hotel"> </td>
+                                <td v-text="item.nombre"></td>
+                                <td v-text="item.categoria"></td>
+                                <td v-text="item.telefono"></td>
+                                <td v-text="item.direccion_calle"></td>
+                                <td v-text="item.direccion_numero"></td>
+                                <td v-text="item.direccion_ciudad"></td>
+                                <td>
+                                <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" v-on:click="modificar(item.id_Hotel,item.nombre,item.categoria,item.telefono,item.direccion_calle, item.direccion_numero,item.direccion_ciudad)">
+              <i class="fas fa-edit"></i>
+              </a>
+              <?php
+              ?>
+              <a class="btn btn-danger ajax-request" id="eliminar" v-on:click="eliminar(item.id_Hotel)"> 
+              <i class="fas fa-trash"></i>
+                                </td>
+                            </tr>
 
                     </table>
+                    </ul>
 
-                   
-                    <?php include('add_modal.php'); ?>
+                        <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 id="titulo" class="modal-title w-100 font-weight-bold">Agregar Hotel</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Id</label>
+                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Nombre</label>
+                                <input id="nombre" type="text" name="nombre" placeholder="Nombre" class="form-control bg-white border-left-0 border-md" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Categoria</label>
+                                <select id="categoria" name="categoria" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2">3</option>
+                                    <option value="2">4</option>
+                                    <option value="2">5</option>
+                                </select>
+                                </div>
 
 
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Telefono</label>
+                                <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="Telefono" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Calle</label>
+                                <input id="calle" type="text" name="calle" placeholder="Calle" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Numero</label>
+                                <input id="numero" type="num" name="numero" placeholder="Numero" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Ciudad</label>
+                                <input id="ciudad" type="text" name="ciudad" placeholder="Ciudad" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button class="btn btn-primary btn-block py-2" id="btn_agregar_modificar">Agregar</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>          
+
+                            
+                           
                            
 
                         </div>
@@ -334,7 +411,11 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="../../js/dashboard/hotel.js"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="../../js/dashboard/hoteles.js"></script>
 
 </body>
 

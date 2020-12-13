@@ -11,6 +11,7 @@ $uDAO = new UsuarioDAO();
     session_start();
     $_SESSION['autenticado'] = true;
     $_SESSION['usuario'] = $correo;
+    $_SESSION["ultimoAcceso"]= date("Y-n-j H:i:s");
     echo 1;
 }else{
     echo 0;

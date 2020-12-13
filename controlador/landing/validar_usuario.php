@@ -15,6 +15,7 @@ $uDAO = new UsuarioDAO();
      session_start();
      $_SESSION['autenticado'] = true;
      $_SESSION['usuario'] = $correo;
+     $_SESSION["ultimoAcceso"]= date("Y-n-j H:i:s");
      header("location:../../vista/dashboard/dashboard.php");
  }
 

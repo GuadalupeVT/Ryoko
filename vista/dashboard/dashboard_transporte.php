@@ -3,6 +3,21 @@
     if($_SESSION['autenticado'] == false){
         header("location:../../index.html");
         echo $_SESSION['autenticado'];
+    } else {
+        // calculamos el tiempo transcurrido
+        $fechaGuardada = $_SESSION["ultimoAcceso"];
+        $ahora = date("Y-n-j H:i:s");
+        $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
+    
+        //comparamos el tiempo transcurrido
+         if($tiempo_transcurrido >= 600) {
+         //si pasaron 10 minutos o más
+          session_destroy(); // destruyo la sesión
+          header("location:../../index.html");//envío al usuario a la pag. de autenticación
+          //sino, actualizo la fecha de la sesión
+        }else {
+        $_SESSION["ultimoAcceso"] = $ahora;
+       }
     }
 ?>
 
@@ -192,7 +207,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario'];  ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
