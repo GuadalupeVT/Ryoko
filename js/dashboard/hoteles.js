@@ -180,7 +180,13 @@ function generarCambio() {
      $numero=document.getElementById('numero').value.trim();
      $ciudad=document.getElementById('ciudad').value.trim();
 
-
+     if (isNaN($telefono)==true || $telefono.length!=10) {
+         
+        alert ('Telefono no valido!');
+       }else{
+           if (isNaN($numero)==true) {
+               alert ('Numero no valido!');
+              }else{
 
      alertify.confirm("¿Desea enviar las modificaciones al Transporte con id:"+$id+"?",
         function() {
@@ -209,5 +215,7 @@ function generarCambio() {
           alertify.error('Seguir aqui');
         }
       );   
+    }
+}
    
 }

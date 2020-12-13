@@ -8,10 +8,15 @@
  $ciudad=$_POST['ciudad'];
  
 //Verificacion de datos
- if(empty($id) || empty($nombre) || empty($telefono) || empty($calle)){
+ if(empty($id) || empty($nombre) || empty($telefono) || empty($calle) || empty($numero) || empty($ciudad)){
      echo "No puede dejar campos vacios";
      
  }else{
+
+if(strlen($telefono)!=10 || is_numeric($telefono)==false || is_numeric($numero)==false || is_numeric($numero)==false){
+    echo "Datos incorrectos!";
+
+}else{
      require_once("../../../modelo/DAO/HotelDAO.php"); 
 
     $tDAO = new HotelDAO();
@@ -24,5 +29,6 @@
              echo "Error";
          }  
  }
+}
 
 ?>
