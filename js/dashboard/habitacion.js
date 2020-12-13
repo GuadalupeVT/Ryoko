@@ -101,9 +101,9 @@ function limpiar(){
   document.getElementById("titulo").innerHTML = "Agregar Habitacion";
   $("#id").val("");
   $("#costo").val("");
-  $("#tipo").val("");
+  $("#tipo").val("Individual");
   $("#id_hotel").val("");
-  $("#disponibilidad").val("");
+  $("#disponibilidad").val("Disponible");
   document.getElementById("btn_agregar_modificar").innerHTML = "Agregar";
   document.getElementById('btn_agregar_modificar').setAttribute('onclick','agregar()');
   $.ajax({
@@ -124,7 +124,7 @@ function agregar() {
    $id=document.getElementById('id').value.trim();
    $costo=document.getElementById('costo').value.trim();
    $tipo=$("#tipo option:selected").text();
-   $id_hotel=document.getElementById('id_hotel').value.trim();
+   $id_hotel=$("#id_hotel option:selected").text();
    $disponibilidad=$("#disponibilidad option:selected").text();
 
    if (isNaN($costo)==true) {
@@ -202,4 +202,4 @@ function generarCambio() {
   }
 }
  
-}
+

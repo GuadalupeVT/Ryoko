@@ -268,7 +268,7 @@ if($_SESSION['usuario']=='admin'){
                                 <td v-text="item.id_Hotel"></td>
                                 <td v-text="item.disponibilidad"></td>
                                 <td>
-                                <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" v-on:click="modificar(item.id_Habitaciones,item.costo,item.tipo,item_id_Hotel,item.disponibilidad)">
+                                <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" v-on:click="modificar(item.id_Habitaciones,item.costo,item.tipo,item.id_Hotel,item.disponibilidad)">
               <i class="fas fa-edit"></i>
               </a>
               <?php
@@ -299,7 +299,7 @@ if($_SESSION['usuario']=='admin'){
 
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Costo</label>
-                                <input id="costo" type="text" name="costo" placeholder="Linea" class="form-control bg-white border-left-0 border-md" required>
+                                <input id="costo" type="text" name="costo" placeholder="Costo" class="form-control bg-white border-left-0 border-md" required>
                                 </div>
 
 
@@ -316,6 +316,16 @@ if($_SESSION['usuario']=='admin'){
                                 <label data-error="wrong" data-success="right" for="orangeForm-email">Id Hotel</label>
                                 <select id="id_hotel" name="id_hotel" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
                                     
+                                <?php
+                                require_once('../../controlador/conexion_bd.php');
+                                $cc = ConexionBD::getConexion();
+                                $busqueda=$cc->db->query("Select id_hotel from hotel");
+                                while($r=$busqueda->fetchColumn()){
+                                   echo" <option value='".$r."'>".$r."</option>";
+                                }
+
+                                ?>
+
                                 </select>
                                 </div>
 
