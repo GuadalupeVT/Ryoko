@@ -7,9 +7,9 @@ session_start();
       public function agregarTransporte($id_transporte, $tipo, $linea, $telefono, $costo, $disponibilidad){
         include_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();    
-        $sql = "INSERT INTO transporte VALUES (:id, :tp, :ln, :tel, :cost, :disp, :id_cl)";
+        $sql = "INSERT INTO transporte VALUES (:id, :tp, :ln, :tel, :cost, :disp)";
         $result = $cc->db->prepare($sql); 
-        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad,':id_cl'=>$_SESSION['usuario']);  
+        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad);  
         if($result->execute($params)){
             return 1;
         }  else{
@@ -39,9 +39,9 @@ session_start();
     public function modificarTransporte($id_transporte, $tipo, $linea, $telefono, $costo, $disponibilidad){
         include_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
-        $sql= "UPDATE transporte SET tipo=:tp, linea=:ln, telefono=:tel, costo=:cost, disponibilidad=:disp, user=:id_cl  WHERE id_Transporte=:id;";
+        $sql= "UPDATE transporte SET tipo=:tp, linea=:ln, telefono=:tel, costo=:cost, disponibilidad=:disp  WHERE id_Transporte=:id;";
         $result = $cc->db->prepare($sql); 
-        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad,':id_cl'=>$_SESSION['usuario']); 
+        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad); 
         if($result->execute($params)){
             return 1;
         }  else{
@@ -52,12 +52,7 @@ session_start();
     public function consultarTransportes(){
         require_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
-        if($_SESSION['usuario']=='admin'){
-            $busqueda=$cc->db->query("Select * from transporte");
-        }else{
-            $busqueda=$cc->db->query("Select * from transporte where user='".$_SESSION['usuario']."'");
-        }
-
+        $busqueda=$cc->db->query("Select * from transporte");
         $data=array();
         while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
             $data[]=$r;
@@ -70,11 +65,8 @@ session_start();
         require_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
 
-        if($_SESSION['usuario']=='admin'){
-            $busqueda=$cc->db->query("select * from transporte where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%'");
-        }else{
-            $busqueda=$cc->db->query("select * from transporte where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%' AND user='".$_SESSION['usuario']."'");
-        }
+        $busqueda=$cc->db->query("select * from transporte where linea LIKE '%".$filtro."%' AND disponibilidad LIKE '%".$filtro."%' AND tipo LIKE '%".$filtro."%'");
+        
         $data=array();
         while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
             $data[]=$r;
