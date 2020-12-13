@@ -10,7 +10,12 @@
  if(empty($id) || empty($linea) || empty($telefono) || empty($costo)){
      echo "No puede dejar campos vacios";
      
- }else{
+    }else{
+
+        if(strlen($telefono)!=10 || is_numeric($telefono)==false || is_numeric($costo)==false){
+            echo "Datos incorrectos!";
+        
+        }else{
      require_once("../../../modelo/DAO/transporteDAO.php"); 
 
     $tDAO = new TransporteDAO();
@@ -23,5 +28,6 @@
              echo "Error";
          }  
  }
+}
 
 ?>

@@ -111,7 +111,7 @@ function limpiar(){
   document.getElementById('btn_agregar_modificar').setAttribute('onclick','agregar()');
   $.ajax({
       data:  {},
-         url:   '../../controlador/dashboard/transporte/generar_id.php',
+         url:   '../../controlador/dashboard/transporte/generar_id_transporte.php',
          dataType: 'html',
          type:  'post',
          beforeSend: function () {
