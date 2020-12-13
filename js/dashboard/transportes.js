@@ -74,7 +74,7 @@ window.onload=function() {
             },
 
           obtenerRegistros(){
-              fetch("../../controlador/dashboard/transportes/consultas_transportes.php")
+              fetch("../../controlador/dashboard/transporte/consultas_transportes.php")
               .then(response=>response.json())
               .then(json=>{this.items=json.transportes})
           },
@@ -85,7 +85,7 @@ window.onload=function() {
               $arreglo=[];
               const data = new FormData();
               data.append('filtro', fl);
-              fetch('../../controlador/dashboard/transportes/consultas_transportes_filtro.php', {
+              fetch('../../controlador/dashboard/transporte/consultas_transportes_filtro.php', {
               method: 'POST',
               body: data
               })
@@ -126,7 +126,7 @@ function limpiar(){
 function agregar() {
    $id=document.getElementById('id').value.trim();
    $tipo=$("#tipo option:selected").text();
-   $linea=getElementById("linea").value.trim();
+   $linea=document.getElementById('linea').value.trim();
    $telefono=document.getElementById('phoneNumber').value.trim();
    $costo=document.getElementById('costo').value.trim();
    $disponibilidad=$("#disponibilidad option:selected").text();
@@ -136,7 +136,7 @@ function agregar() {
        alert ('Telefono no valido!');
       }else{
           if (isNaN($costo)==true) {
-              alert ('Numero no valido!');
+              alert ('Costo no valido!');
              }else{
 
   $.ajax({
@@ -168,7 +168,7 @@ function agregar() {
 function generarCambio() {
     $id=document.getElementById('id').value.trim();
     $tipo=$("#tipo option:selected").text();
-    $linea=getElementById("linea").value.trim();
+    $linea=document.getElementById('linea').value.trim();
     $telefono=document.getElementById('phoneNumber').value.trim();
     $costo=document.getElementById('costo').value.trim();
     $disponibilidad=$("#disponibilidad option:selected").text();

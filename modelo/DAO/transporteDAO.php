@@ -71,9 +71,9 @@ session_start();
         $cc = ConexionBD::getConexion();
 
         if($_SESSION['usuario']=='admin'){
-            $busqueda=$cc->db->query("select * from transportes where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%'");
+            $busqueda=$cc->db->query("select * from transporte where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%'");
         }else{
-            $busqueda=$cc->db->query("select * from transportes where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%' AND user='".$_SESSION['usuario']."'");
+            $busqueda=$cc->db->query("select * from transporte where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%' AND user='".$_SESSION['usuario']."'");
         }
         $data=array();
         while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
@@ -86,7 +86,7 @@ session_start();
     public function generarId(){
         require_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
-        $sql = "SELECT COUNT(*) FROM transportes";        
+        $sql = "SELECT COUNT(*) FROM transporte";        
         $result = $cc->db->prepare($sql); 
         $result->execute(); 
         $affected_rows = $result->fetchColumn(); 

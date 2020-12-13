@@ -305,7 +305,7 @@
 
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Linea</label>
-                                <input id="Linea" type="text" name="linea" placeholder="Linea" class="form-control bg-white border-left-0 border-md" required>
+                                <input id="linea" type="text" name="linea" placeholder="Linea" class="form-control bg-white border-left-0 border-md" required>
                                 </div>
 
 
@@ -411,7 +411,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
     <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
-    <script src="../../js/dashboard/transporte.js"></script>
+    <script src="../../js/dashboard/transportes.js"></script>
 
 </body>
 
