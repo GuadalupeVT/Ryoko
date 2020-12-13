@@ -39,6 +39,8 @@ function onSuccess(googleUser) {
           $hotel=document.getElementById("hotel").value;
           $transporte=document.getElementById("transporte").value;
 
+          
+
        
          }
 

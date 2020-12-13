@@ -19,13 +19,6 @@
         $_SESSION["ultimoAcceso"] = $ahora;
        }
 
-       //Ver el tipo de usuario
-       require_once("../../modelo/DAO/usuarioDAO.php");  
-
-        //Validacion
-        $correo =  $_SESSION['usuario'];
-        $uDAO = new UsuarioDAO();              
-        $_SESSION['tipoUsuario']=$uDAO->tipoUsuario($correo);
     }
 ?>
 
@@ -102,7 +95,7 @@
             <hr class="sidebar-divider">
 
 <?php
-if($_SESSION['tipoUsuario']=="12" || $_SESSION['tipoUsuario']=="123"){
+if($_SESSION['usuario']=='admin'){
 ?>
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -114,20 +107,19 @@ if($_SESSION['tipoUsuario']=="12" || $_SESSION['tipoUsuario']=="123"){
             <li class="nav-item">
                 <a class="nav-link" href="dashboard_hotel.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
-                    <span>Mis hoteles</span></a>
+                    <span>Hoteles</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="dashboard_habitaciones.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
-                    <span>Mis habitaciones</span></a>
+                    <span>Habitaciones</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-    <?php }if($_SESSION['tipoUsuario']=="13" || $_SESSION['tipoUsuario']=="123"){?>
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -139,7 +131,7 @@ if($_SESSION['tipoUsuario']=="12" || $_SESSION['tipoUsuario']=="123"){
             <li class="nav-item">
                 <a class="nav-link" href="dashboard_transporte.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
-                    <span>Mis transportes</span></a>
+                    <span>Transportes</span></a>
             </li>
 
 

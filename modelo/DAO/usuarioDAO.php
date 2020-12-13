@@ -6,11 +6,11 @@
       //===============METODOS PARA ABCC ===============
 
       //------------ ALTAS ------------
-      public function agregarUsuario($usuario, $contraseña, $tipo){
+      public function agregarUsuario($usuario, $contraseña){
         $cc = ConexionBD::getConexion(); 
-        $sql = "INSERT INTO usuarios VALUES (sha1(:user), sha1(:cont), :tp)";
+        $sql = "INSERT INTO usuarios VALUES (sha1(:user), sha1(:cont))";
         $result = $cc->db->prepare($sql); 
-        $params = array(':user'=> $usuario, ':cont'=>$contraseña, ':tp'=>$tipo); 
+        $params = array(':user'=> $usuario, ':cont'=>$contraseña); 
         if($result->execute($params)){
             return 1;
         }  else{
@@ -70,18 +70,6 @@
         return ($affected_rows); 
         //retorna numerico 
     }
-
-    public function tipoUsuario($correo){
-        $cc = ConexionBD::getConexion();
-        $sql = "SELECT tipo FROM usuarios WHERE usuario=sha1(:user);";        
-        $result = $cc->db->prepare($sql); 
-        $params = array(':user'=> $correo);
-        $result->execute($params); 
-        $affected_rows = $result->fetchColumn(); 
-        return ($affected_rows); 
-        //retorna numerico 
-    }
-
     
 
   }

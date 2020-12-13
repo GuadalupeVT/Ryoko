@@ -52,58 +52,66 @@
             <form method="POST" action="../controlador/registro/procesar_altas_usuarios.php" id="registrar">
                 <div class="row">
 
+                <i class="input-group col-lg-6 mb-2 ">Correo</i>
+                <i class="input-group col-lg-6 mb-2 ">Contraseña</i>
+
                      <!-- Email Address -->
-                     <div class="input-group col-lg-6 mb-4">
+                     <div class="input-group col-lg-6 mb-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Correo" class="form-control bg-white border-left-0 border-md" value="<?php  session_start(); if(isset($_SESSION['correo'])==1){echo $_SESSION['correo'];} ?>" required>
+                        <input id="email" type="email" name="email" placeholder="" class="form-control bg-white border-left-0 border-md" value="<?php  session_start(); if(isset($_SESSION['correo'])==1){echo $_SESSION['correo'];} ?>" required>
                     </div>
 
                      <!-- Password -->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-6 mb-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-3 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Contraseña" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="password" type="password" name="password" placeholder="" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- First Name -->
-                    <div class="input-group col-lg-6 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="firstName" type="text" name="firstName" placeholder="Nombre" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['nombre'])==1){echo $_SESSION['nombre'];} ?>" required>
-                    </div>
-
-                    <!-- Last Name -->
-                    <div class="input-group col-lg-6 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="lastname" type="text" name="lastname" placeholder="Primer Apellido" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['primerAp'])==1){echo $_SESSION['primerAp'];} ?>" required>
-                    </div>
-
-                    <!-- Last Name -->
-                    <div class="input-group col-lg-6 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="lastName2" type="text" name="lastName2" placeholder="Segundo Apellido" class="form-control bg-white border-left-0 border-md" value="<?php if(isset($_SESSION['segundoAp'])==1){echo $_SESSION['segundoAp'];} ?>" required>
-                    </div>
-
-
                    
+                                <i class="input-group col-lg-6 mb-2 ">Nombre</i>
+                                <i class="input-group col-lg-6 mb-2 ">Primer Apellido</i>
+                          
+                    <div class="input-group col-lg-6 mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="firstName" type="text" name="firstName" placeholder="" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['nombre'])==1){echo $_SESSION['nombre'];} ?>" required>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="lastname" type="text" name="lastname" placeholder="" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['primerAp'])==1){echo $_SESSION['primerAp'];} ?>" required>
+                    </div>
+
+                    <i class="input-group col-lg-6 mb-2 ">Segundo Apellido</i>
+                    <i class="input-group col-lg-6 mb-2 ">Telefono</i>
+
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="lastName2" type="text" name="lastName2" placeholder="" class="form-control bg-white border-left-0 border-md" value="<?php if(isset($_SESSION['segundoAp'])==1){echo $_SESSION['segundoAp'];} ?>" required>
+                    </div>
+
 
                     <!-- Phone Number -->
                     <div class="input-group col-lg-6 mb-4">
@@ -112,15 +120,7 @@
                                 <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div>
-                        <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                            <option value="">+55</option>
-                            <option value="">+54</option>
-                            <option value="">+52</option>
-                            <option value="">+10</option>
-                            <option value="">+15</option>
-                            <option value="">+18</option>
-                        </select>
-                        <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="Telefono" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['telefono'])==1){echo $_SESSION['telefono'];} ?>" required>
+                        <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['telefono'])==1){echo $_SESSION['telefono'];} ?>" required>
                     </div>
 
                     <!--Fecha de nacimiento-->
@@ -133,28 +133,7 @@
                         <input type="date" id="birthday" name="birthday" placeholder="Fecha de nacimiento" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['fecha_nac'])==1){echo $_SESSION['fecha_nac'];} ?>" required>
                     </div>
 
-                   <!--Tipo de usuario-->
-                   
-                   <div class="input-group col-lg-4 mb-4">
-                        <div class="input-group-prepend">   
-                            <input type="checkbox" id="cliente" name="cliente" value="cliente" required> 
-                            <label for="cliente1" class="form-control bg-white border-md border-left-0 pl-3"> Soy un cliente</label><br>     
-                        </div>
-                    </div>
-
-                    <div class="input-group col-lg-4 mb-4">
-                        <div class="input-group-prepend">   
-                            <input type="checkbox" id="hotel" name="hotel" value="hotel"> 
-                            <label for="hotel1" class="form-control bg-white border-md border-left-0 pl-3"> Soy un proveedor de hoteles</label><br>     
-                        </div>
-                    </div>
-
-                    <div class="input-group col-lg-4 mb-4">
-                        <div class="input-group-prepend">   
-                            <input type="checkbox" id="transporte" name="transporte" value="transporte"> 
-                            <label for="transporte1" class="form-control bg-white border-md border-left-0 pl-3"> Soy un proveedor de transporte</label><br>     
-                        </div>
-                    </div>
+                 
                    
                     
                     <div class="g-recaptcha" data-sitekey="6Lcb__8ZAAAAAGVgVpbTVN6T2ZPoEM3HZHMFTjo-" req style="padding-left: 22%; padding-bottom: 5%;"></div>
@@ -191,6 +170,8 @@
         </div>
     </div>
 </div>
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 <script src="../js/registro.js"></script>
 
     </body>
