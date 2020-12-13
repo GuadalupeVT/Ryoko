@@ -14,8 +14,7 @@ window.onload=function() {
               id_Habitacion: '',
               costo: '',
               tipo: '',
-              telefono: '',
-              costo:'',
+              id_Hotel: '',
               disponibilidad:''
             },
         items: [ ]
@@ -28,12 +27,12 @@ window.onload=function() {
 
       methods: {
           eliminar: function(id) {
-              alertify.confirm("Se eliminará Transporte con id:"+ id,
+              alertify.confirm("Se eliminará Habitación con id:"+ id,
                   function() {
                     alertify.success('Ok');
                     $.ajax({
                       data:  {'id':id},
-                      url:   '../../controlador/dashboard/transporte/bajas_transporte.php',
+                      url:   '../../controlador/dashboard/habitacion/bajas_habitacion.php',
                       dataType: 'html',
                       type:  'post',
                       beforeSend: function () {
@@ -59,13 +58,12 @@ window.onload=function() {
               
             },
 
-            modificar:function(id,tipo,linea,telefono,costo,disponibilidad){
-              document.getElementById("titulo").innerHTML = "Modificar Transporte";
+            modificar:function(id,costo,tipo,id_hotel,disponibilidad){
+              document.getElementById("titulo").innerHTML = "Modificar Habitacion";
               $("#id").val(id);
-              $("#tipo").val(tipo);
-              $("#linea").val(linea);
-              $("#phoneNumber").val(telefono);
               $("#costo").val(costo);
+              $("#tipo").val(tipo);
+              $("#id_hotel").val(id_hotel);
               $("#disponibilidad").val(disponibilidad);
               document.getElementById("btn_agregar_modificar").innerHTML = "Modificar";
               //document.getElementById('btn_agregar_modificar').onclick = generarCambio();
@@ -74,9 +72,9 @@ window.onload=function() {
             },
 
           obtenerRegistros(){
-              fetch("../../controlador/dashboard/transporte/consultas_transportes.php")
+              fetch("../../controlador/dashboard/habitacion/consultas_habitaciones.php")
               .then(response=>response.json())
-              .then(json=>{this.items=json.transportes})
+              .then(json=>{this.items=json.habitaciones})
           },
 
           obtenerRegistrosFiltro(fl){
@@ -85,12 +83,12 @@ window.onload=function() {
               $arreglo=[];
               const data = new FormData();
               data.append('filtro', fl);
-              fetch('../../controlador/dashboard/transporte/consultas_transportes_filtro.php', {
+              fetch('../../controlador/dashboard/habitacion/consultas_habitaciones_filtro.php', {
               method: 'POST',
               body: data
               })
               .then(response=>response.json())
-              .then(json=>{this.items=json.transportes});
+              .then(json=>{this.items=json.habitaciones});
 
               console.log(this.items);
           }
@@ -100,18 +98,17 @@ window.onload=function() {
 }
 
 function limpiar(){
-  document.getElementById("titulo").innerHTML = "Agregar Transporte";
-    $("#id").val("");
-    $("#tipo").val("Avión");
-    $("#linea").val("");
-    $("#phoneNumber").val("");
-    $("#costo").val("");
-    $("#disponibilidad").val("Disponible");
+  document.getElementById("titulo").innerHTML = "Agregar Habitacion";
+  $("#id").val("");
+  $("#costo").val("");
+  $("#tipo").val("");
+  $("#id_hotel").val("");
+  $("#disponibilidad").val("");
   document.getElementById("btn_agregar_modificar").innerHTML = "Agregar";
   document.getElementById('btn_agregar_modificar').setAttribute('onclick','agregar()');
   $.ajax({
       data:  {},
-         url:   '../../controlador/dashboard/transporte/generar_id_transporte.php',
+         url:   '../../controlador/dashboard/habitacion/generar_id_habitacion.php',
          dataType: 'html',
          type:  'post',
          beforeSend: function () {
@@ -125,23 +122,20 @@ function limpiar(){
 
 function agregar() {
    $id=document.getElementById('id').value.trim();
-   $tipo=$("#tipo option:selected").text();
-   $linea=document.getElementById('linea').value.trim();
-   $telefono=document.getElementById('phoneNumber').value.trim();
    $costo=document.getElementById('costo').value.trim();
+   $tipo=$("#tipo option:selected").text();
+   $id_hotel=document.getElementById('id_hotel').value.trim();
    $disponibilidad=$("#disponibilidad option:selected").text();
 
-   if (isNaN($telefono)==true || $telefono.length!=10) {
+   if (isNaN($costo)==true) {
        
-       alert ('Telefono no valido!');
+       alert ('Costo no valido!');
       }else{
-          if (isNaN($costo)==true) {
-              alert ('Costo no valido!');
-             }else{
+          
 
   $.ajax({
-      data:  {'id':$id,'tipo':$tipo,'linea':$linea,'telefono':$telefono,'costo':$costo,'disponibilidad':$disponibilidad},
-      url:   '../../controlador/dashboard/transporte/altas_transporte.php',
+      data:  {'id':$id,'costo':$costo,'tipo':$tipo,'id_hotel':$id_hotel,'disponibilidad':$disponibilidad},
+      url:   '../../controlador/dashboard/habitacion/altas_habitacion.php',
       dataType: 'html',
       type:  'post',
       beforeSend: function () {
@@ -161,32 +155,29 @@ function agregar() {
       }
       
   });
-}
+
 }
 }
 
 function generarCambio() {
     $id=document.getElementById('id').value.trim();
-    $tipo=$("#tipo option:selected").text();
-    $linea=document.getElementById('linea').value.trim();
-    $telefono=document.getElementById('phoneNumber').value.trim();
-    $costo=document.getElementById('costo').value.trim();
-    $disponibilidad=$("#disponibilidad option:selected").text();
- 
-    if (isNaN($telefono)==true || $telefono.length!=10) {
-        
-        alert ('Telefono no valido!');
-       }else{
-           if (isNaN($costo)==true) {
-               alert ('Numero no valido!');
-              }else{
+   $costo=document.getElementById('costo').value.trim();
+   $tipo=$("#tipo option:selected").text();
+   $id_hotel=document.getElementById('id_hotel').value.trim();
+   $disponibilidad=$("#disponibilidad option:selected").text();
 
-   alertify.confirm("¿Desea enviar las modificaciones al Transporte con id:"+$id+"?",
+   if (isNaN($costo)==true) {
+       
+       alert ('Costo no valido!');
+      }else{
+          
+
+   alertify.confirm("¿Desea enviar las modificaciones al Habitacion con id:"+$id+"?",
       function() {
         alertify.success('Ok');
         $.ajax({
-            data:  {'id':$id,'tipo':$tipo,'linea':$linea,'telefono':$telefono,'costo':$costo,'disponibilidad':$disponibilidad},
-             url:   '../../controlador/dashboard/transporte/cambios_transporte.php',
+            data:  {'id':$id,'costo':$costo,'tipo':$tipo,'id_hotel':$id_hotel,'disponibilidad':$disponibilidad},
+             url:   '../../controlador/dashboard/habitacion/cambios_habitacion.php',
              dataType: 'html',
              type:  'post',
              beforeSend: function () {
