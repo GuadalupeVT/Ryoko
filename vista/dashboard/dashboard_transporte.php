@@ -163,7 +163,7 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                                aria-label="Search" aria-describedby="basic-addon2" id="buscar" name="buscar">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -207,7 +207,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario'];  ?></span>
+                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario'];  ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -242,61 +242,41 @@
                         <i class="icon ion-md-add"></i> Agregar</a>
                     </div>
 
-                   
-                   
+ 
+
+<ul id="example-1">
+               
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Linea</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Costo</th>
-                            <th scope="col">Disponibilidad</th>
-                            <th scope="col">Acción</th>
-
-<?php
-require_once("../../modelo/DAO/transporteDAO.php"); 
-
-$tDAO = new TransporteDAO();
-
-                    
-$res=$tDAO->consultarTransportes();
-foreach ($res as $muestra) {
-
-    $id_t=$muestra['id_Transporte'];
-    $tp=$muestra['tipo'];
-    $ln=$muestra['linea'];
-    $ct=$muestra['costo'];
-    $tl=$muestra['telefono'];
-    $disp=$muestra['disponibilidad'];
-    echo '<tr>';
-
-    echo '<td >' . $id_t . '</td>';
-    echo '<td >' . $tp. '</td>';
-    echo '<td >' . $ln. '</td>';
-    echo '<td >' . $tl. '</td>';
-    echo '<td >' . $ct. '</td>';
-    echo '<td >' . $disp. '</td>';
-
-
-    echo '<td>
-
-              <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" onclick="modificar(`'.$id_t.'`,`'.$tp.'`,`'.$ln.'`,`'.$tl.'`,`'.$ct.'`,`'.$disp.'`);">
+                                <th scope="col">id</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Linea</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Costo</th>
+                                <th scope="col">Disponibilidad</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                            <tr v-for="item in items">
+                                <td v-text="item.id_Transporte"> </td>
+                                <td v-text="item.tipo"></td>
+                                <td v-text="item.linea"></td>
+                                <td v-text="item.telefono"></td>
+                                <td v-text="item.costo"></td>
+                                <td v-text="item.disponibilidad"></td>
+                                <td>
+                                <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" v-on:click="modificar(item.id_Transporte,item.tipo,item.linea,item.telefono,item.costo,item.disponibilidad)">
               <i class="fas fa-edit"></i>
               </a>
-              
-              <a class="btn btn-danger ajax-request" id="eliminar" onclick="eliminar(`'.$id_t.'`);"> 
+              <?php
+              ?>
+              <a class="btn btn-danger ajax-request" id="eliminar" v-on:click="eliminar(item.id_Transporte)"> 
               <i class="fas fa-trash"></i>
-              </a>
+                                </td>
+                            </tr>
 
-             </td>';
-    echo ' </tr>';
-
-}
-?>
-                        </tbody>
-                        </table>
+                    </table>
+                    </ul>
 
                         <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -311,8 +291,10 @@ foreach ($res as $muestra) {
                             <div class="modal-body mx-3">
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-email">Id</label>
-                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" required>
+                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" disabled="disabled">
                                 </div>
+
+
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-email">Tipo</label>
                                 <select id="tipo" name="tipo" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
@@ -323,8 +305,9 @@ foreach ($res as $muestra) {
 
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Linea</label>
-                                <input id="linea" type="text" name="linea" placeholder="Linea" class="form-control bg-white border-left-0 border-md" required>
+                                <input id="Linea" type="text" name="linea" placeholder="Linea" class="form-control bg-white border-left-0 border-md" required>
                                 </div>
+
 
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Telefono</label>
@@ -333,7 +316,7 @@ foreach ($res as $muestra) {
 
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Costo</label>
-                                <input id="costo" type="num" name="costo" placeholder="Costo" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                <input id="costo" type="text" name="costo" placeholder="Costo" class="form-control bg-white border-md border-left-0 pl-3" required>
                                 </div>
 
                                 <div class="md-form mb-2">
@@ -422,7 +405,13 @@ foreach ($res as $muestra) {
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="../../js/dashboard/transportes.js"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+    <script src="../../js/dashboard/transporte.js"></script>
 
 </body>
 
