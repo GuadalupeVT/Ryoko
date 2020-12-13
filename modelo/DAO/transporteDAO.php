@@ -1,5 +1,5 @@
 <?php
-
+session_start();
   class TransporteDAO{
       //===============METODOS PARA ABCC ===============
 
@@ -7,9 +7,9 @@
       public function agregarTransporte($id_transporte, $tipo, $linea, $telefono, $costo, $disponibilidad){
         include_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();    
-        $sql = "INSERT INTO transporte VALUES (:id, :tp, :ln, :tel, :cost, :disp)"; 
+        $sql = "INSERT INTO transporte VALUES (:id, :tp, :ln, :tel, :cost, :disp, :id_cl)";
         $result = $cc->db->prepare($sql); 
-        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad); 
+        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad,':id_cl'=>$_SESSION['usuario']);  
         if($result->execute($params)){
             return 1;
         }  else{
@@ -39,9 +39,9 @@
     public function modificarTransporte($id_transporte, $tipo, $linea, $telefono, $costo, $disponibilidad){
         include_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
-        $sql= "UPDATE transporte SET tipo=:tp, linea=:ln, telefono=:tel, costo=:cost, disponibilidad=:disp WHERE id_Transporte=:id;";
+        $sql= "UPDATE transporte SET tipo=:tp, linea=:ln, telefono=:tel, costo=:cost, disponibilidad=:disp, user=:id_cl  WHERE id_Transporte=:id;";
         $result = $cc->db->prepare($sql); 
-        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad); 
+        $params = array(':id'=>$id_transporte, ':tp'=>$tipo, ':ln'=>$linea, ':tel'=>$telefono, ':cost'=>$costo, ':disp'=>$disponibilidad,':id_cl'=>$_SESSION['usuario']); 
         if($result->execute($params)){
             return 1;
         }  else{
@@ -50,22 +50,50 @@
     }//modificar
 
     public function consultarTransportes(){
-        require_once('../../controlador/conexion_bd.php');
+        require_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
-        $busqueda=$cc->db->query("Select * from transporte");
+        if($_SESSION['usuario']=='admin'){
+            $busqueda=$cc->db->query("Select * from transporte");
+        }else{
+            $busqueda=$cc->db->query("Select * from transporte where user='".$_SESSION['usuario']."'");
+        }
+
+        $data=array();
+        while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
+            $data[]=$r;
+        }
         /*Almacenamos el resultado de fetchAll en una variable*/
-        return $arrDatos=$busqueda->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode(array("transportes"=>$data));
     }
 
-    public function consultarTransporte_id($id){
-        include_once('../../../controlador/conexion_bd.php');
-        $cc = ConexionBD::getConexion(); 
-        $result = $cc->db->prepare("Select * from transporte WHERE id_Transporte=:id");
-        $params = array(':id'=>$id);
-        $result->execute($params);
+    public function consultarTransportesFiltro($filtro){
+        require_once('../../../controlador/conexion_bd.php');
+        $cc = ConexionBD::getConexion();
+
+        if($_SESSION['usuario']=='admin'){
+            $busqueda=$cc->db->query("select * from transportes where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%'");
+        }else{
+            $busqueda=$cc->db->query("select * from transportes where nombre LIKE '%".$filtro."%' AND direccion_ciudad LIKE '%".$filtro."%' AND user='".$_SESSION['usuario']."'");
+        }
+        $data=array();
+        while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
+            $data[]=$r;
+        }
         /*Almacenamos el resultado de fetchAll en una variable*/
-        return $result -> fetchAll(PDO::FETCH_OBJ); 
+        echo json_encode(array("transportes"=>$data));
     }
 
+    public function generarId(){
+        require_once('../../../controlador/conexion_bd.php');
+        $cc = ConexionBD::getConexion();
+        $sql = "SELECT COUNT(*) FROM transportes";        
+        $result = $cc->db->prepare($sql); 
+        $result->execute(); 
+        $affected_rows = $result->fetchColumn(); 
+        $id="TR0".$affected_rows;
+        echo ($id); 
+    }
+    
   }
-?>
+  
+ ?>
