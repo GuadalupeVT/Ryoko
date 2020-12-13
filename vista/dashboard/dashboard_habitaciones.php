@@ -94,6 +94,10 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <?php
+if($_SESSION['usuario']=='admin'){
+?>
+
             <!-- Heading -->
             <div class="sidebar-heading">
                 Proveedor Hoteles
@@ -133,6 +137,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+            <?php } ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -364,21 +369,21 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-   <!-- Logout Modal-->
-   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quieres salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Selecciona "Salir" si deseas cerrar sesión.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../controlador/cerrar_sesion.php">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="../../controlador/cerrar_sesion.php">Salir</a>
                 </div>
             </div>
         </div>
