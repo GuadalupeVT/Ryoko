@@ -18,6 +18,14 @@
         }else {
         $_SESSION["ultimoAcceso"] = $ahora;
        }
+
+       //Ver el tipo de usuario
+       require_once("../../modelo/DAO/usuarioDAO.php");  
+
+        //Validacion
+        $correo =  $_SESSION['usuario'];
+        $uDAO = new UsuarioDAO();              
+        $_SESSION['tipoUsuario']=$uDAO->tipoUsuario($correo);
     }
 ?>
 
@@ -93,6 +101,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+<?php
+if($_SESSION['tipoUsuario']=="12" || $_SESSION['tipoUsuario']=="123"){
+?>
             <!-- Heading -->
             <div class="sidebar-heading">
                 Proveedor Hoteles
@@ -116,6 +127,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+    <?php }if($_SESSION['tipoUsuario']=="13" || $_SESSION['tipoUsuario']=="123"){?>
+
             <!-- Heading -->
             <div class="sidebar-heading">
                 Proveedor transportes
@@ -132,6 +145,8 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
+            <?php } ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

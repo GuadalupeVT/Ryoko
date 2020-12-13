@@ -71,5 +71,18 @@
         //retorna numerico 
     }
 
+    public function tipoUsuario($correo){
+        $cc = ConexionBD::getConexion();
+        $sql = "SELECT tipo FROM usuarios WHERE usuario=sha1(:user);";        
+        $result = $cc->db->prepare($sql); 
+        $params = array(':user'=> $correo);
+        $result->execute($params); 
+        $affected_rows = $result->fetchColumn(); 
+        return ($affected_rows); 
+        //retorna numerico 
+    }
+
+    
+
   }
 ?>

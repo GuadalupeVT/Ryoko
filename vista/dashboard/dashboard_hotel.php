@@ -293,7 +293,7 @@
                             <div class="modal-body mx-3">
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-email">Id</label>
-                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" required>
+                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" disabled="disabled">
                                 </div>
 
                                 <div class="md-form mb-2">
@@ -306,9 +306,9 @@
                                 <select id="categoria" name="categoria" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
-                                    <option value="2">3</option>
-                                    <option value="2">4</option>
-                                    <option value="2">5</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                                 </div>
 
@@ -415,6 +415,8 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
     <script src="../../js/dashboard/hoteles.js"></script>
 
 </body>

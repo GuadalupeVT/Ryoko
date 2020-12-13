@@ -30,7 +30,17 @@
 
         methods: {
             eliminar: function(id) {
-                var opcion = confirm("Se eliminará Hotel con id:"+ id);
+                alertify.confirm("Se eliminará Hotel con id:"+ id,
+                    function() {
+                      alertify.success('Ok');
+                      location.reload();
+                    },
+                    function() {
+                      alertify.error('Cancelar');
+                    }
+                  );
+
+                var opcion = confirm();
                 if (opcion == true) {
                     $.ajax({
                         data:  {'id':id},
@@ -40,8 +50,15 @@
                         beforeSend: function () {
                         },
                         success:  function (response) {
-                                 alert(response);
-                                 location.reload();
+                            alertify.confirm(response,
+                            function() {
+                              alertify.success('Ok');
+                              location.reload();
+                            },
+                            function() {
+                              alertify.error('Seguir aqui');
+                            }
+                          );
                         }
                     });
                 } else {
@@ -91,7 +108,6 @@
 
 function limpiar(){
     document.getElementById("titulo").innerHTML = "Agregar Hotel";
-    $("#id").val("");
     $("#nombre").val("");
     $("#categoria").val("1");
     $("#phoneNumber").val("");
@@ -100,6 +116,18 @@ function limpiar(){
     $("#ciudad").val("");
     document.getElementById("btn_agregar_modificar").innerHTML = "Agregar";
     document.getElementById('btn_agregar_modificar').setAttribute('onclick','agregar()');
+    $.ajax({
+        data:  {},
+           url:   '../../controlador/dashboard/hotel/generar_id.php',
+           dataType: 'html',
+           type:  'post',
+           beforeSend: function () {
+           },
+           success:  function (response) {
+              // alert(response);
+            $("#id").val(response);
+           }
+       });
 }
 
 function agregar() {
@@ -121,8 +149,16 @@ function agregar() {
             
         },
         success:  function (response) {
-                 alert(response);
-                 location.reload();
+                 alertify.confirm(response,
+                 function() {
+                   alertify.success('Salir');
+                   location.reload();
+                 },
+                 function() {
+                   alertify.error('Seguir aqui');
+                 }
+               );
+
         }
     });
 }
@@ -136,20 +172,34 @@ function generarCambio() {
      $numero=document.getElementById('numero').value;
      $ciudad=document.getElementById('ciudad').value;
 
-    var opcion = confirm("¿Desea enviar las modificaciones al Transporte con id:"+$id+"?");
-   if (opcion == true) {
-       $.ajax({
-        data:  {'id':$id,'nombre':$nombre,'categoria':$categoria,'telefono':$telefono,'calle':$calle,'numero':$numero,'ciudad':$ciudad},
-           url:   '../../controlador/dashboard/hotel/cambios_hotel.php',
-           dataType: 'html',
-           type:  'post',
-           beforeSend: function () {
-           },
-           success:  function (response) {
-                    alert(response);
-                    //location.reload();
-           }
-       });
-   }
-}
 
+
+     alertify.confirm("¿Desea enviar las modificaciones al Transporte con id:"+$id+"?",
+        function() {
+          alertify.success('Ok');
+          $.ajax({
+            data:  {'id':$id,'nombre':$nombre,'categoria':$categoria,'telefono':$telefono,'calle':$calle,'numero':$numero,'ciudad':$ciudad},
+               url:   '../../controlador/dashboard/hotel/cambios_hotel.php',
+               dataType: 'html',
+               type:  'post',
+               beforeSend: function () {
+               },
+               success:  function (response) {
+                    alertify.confirm(response,
+                    function() {
+                      alertify.success('Ok');
+                      location.reload();
+                    },
+                    function() {
+                      alertify.error('Seguir aqui');
+                    }
+                  );
+               }
+           });
+        },
+        function() {
+          alertify.error('Seguir aqui');
+        }
+      );   
+   
+}
