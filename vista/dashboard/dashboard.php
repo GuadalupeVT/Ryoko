@@ -265,7 +265,7 @@ if($_SESSION['usuario']=='admin'){
                                 <i class="fa fa-black-tie text-muted">Fecha Inicio</i>
                             </span>
                         </div>
-                        <input type="date" id="fin" name="inicio" placeholder="Fecha de inicio" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['fecha_nac'])==1){echo $_SESSION['fecha_nac'];} ?>" required>
+                        <input type="date" id="inicio" name="inicio" placeholder="Fecha de inicio" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['fecha_nac'])==1){echo $_SESSION['fecha_nac'];} ?>" required>
                     </div>
 
                      <!--Fecha inicio-->
@@ -306,7 +306,7 @@ if($_SESSION['usuario']=='admin'){
                                 <div class="input-group col-lg-12 mb-2 "></div>
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-5 ml-5" >
-                        <button type="submit" class="btn btn-primary btn-block py-2" onclick="verificar()">
+                        <button type="submit" class="btn btn-primary btn-block py-2" onclick="agregar()">
                             <span class="font-weight-bold">Verificar disponibilidad     
                             </span>             
                     </button>
@@ -382,6 +382,10 @@ if($_SESSION['usuario']=='admin'){
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+    <script src="../../js/dashboard/reservas_dashboard.js"></script>
 
 </body>
 

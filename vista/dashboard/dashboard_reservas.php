@@ -311,7 +311,7 @@ if($_SESSION['usuario']=='admin'){
 
                                 <div class="md-form mb-2">
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Fecha de inicio</label>
-                                <input type="date" id="fin" name="inicio" placeholder="Fecha de inicio" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                <input type="date" id="inicio" name="inicio" placeholder="Fecha de inicio" class="form-control bg-white border-md border-left-0 pl-3" required>
                                 </div>
 
                                 <div class="md-form mb-2">

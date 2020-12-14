@@ -100,7 +100,7 @@ window.onload=function() {
               body: data
               })
               .then(response=>response.json())
-              .then(json=>{this.items=json.habitaciones});
+              .then(json=>{this.items=json.reservas});
 
               console.log(this.items);
           }
@@ -110,14 +110,10 @@ window.onload=function() {
 }
 
 
-function agregar() {
-  
-}
-
 function generarCambio() {
    $id=document.getElementById('id').value.trim();
-   $inicio=document.getElementById('inicio').value().trim();
-   $fin=document.getElementById('fin').value().trim();
+   $inicio=document.getElementById('inicio').value.trim();
+   $fin=document.getElementById('fin').value.trim();
 
    alertify.confirm("¿Desea enviar las modificaciones a la Reserva con id:"+$id+"?",
       function() {
