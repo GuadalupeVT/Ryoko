@@ -292,7 +292,6 @@ if($_SESSION['usuario']=='admin'){
 
                     </table>
                     </ul>
-
                         <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
                         <div class="modal-dialog" role="document">

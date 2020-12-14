@@ -61,7 +61,7 @@ session_start();
         if($_SESSION['usuario']=='admin'){
            $busqueda=$cc->db->query("Select * from reporte_reserva");
         }else{
-            $busqueda=$cc->db->query("Select * from reporte_reserva where id_Usuario='".$_SESSION['usuario']."'");
+            $busqueda=$cc->db->query("Select * from reporte_reserva WHERE id_Cliente=sha1('".$_SESSION['usuario']."')");
         }
         $data=array();
         while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
@@ -77,8 +77,8 @@ session_start();
         if($_SESSION['usuario']=='admin'){
             $busqueda=$cc->db->query("Select * from reporte_reserva where tipo LIKE '%".$filtro."%' OR disponibilidad LIKE '%".$filtro."%'");
          }else{
-            $busqueda=$cc->db->query("select * from reporte_reserva where tipo LIKE '%".$filtro."%' OR disponibilidad LIKE '%".$filtro."%' AND id_Usuario='".$_SESSION['usuario']."'");
-       
+            $busqueda=$cc->db->query("select * from reporte_reserva where fecha_inicio LIKE '%".$filtro."%' OR fecha_fin LIKE '%".$filtro."%' AND id_Cliente=sha1('".$_SESSION['usuario']."')");
+         }
         $data=array();
         while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
             $data[]=$r;
@@ -86,7 +86,6 @@ session_start();
         /*Almacenamos el resultado de fetchAll en una variable*/
         echo json_encode(array("reservas"=>$data));
     }
-}
 
     public function generarId(){
         require_once('../../../controlador/conexion_bd.php');
