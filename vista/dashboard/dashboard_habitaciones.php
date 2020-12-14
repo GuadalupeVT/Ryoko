@@ -112,7 +112,7 @@ if($_SESSION['usuario']=='admin'){
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="dashboard_habitaciones.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
                     <span>Mis habitaciones</span></a>
@@ -128,7 +128,7 @@ if($_SESSION['usuario']=='admin'){
 
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="dashboard_transporte.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
                     <span>Mis transportes</span></a>

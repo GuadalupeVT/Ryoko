@@ -45,6 +45,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
@@ -242,26 +243,86 @@ if($_SESSION['usuario']=='admin'){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <i class="icon ion-md-add"></i> Agregar</a>
+                
+                        </div>
+                        <div class="image-holder container my-1" style="background-image: url(../../imagenes/dashboard/form-wizard.jpg);
+                                                                        background-position: bottom center;
+                                                                        background-size: cover;
+                                                                        background-position: bottom;
+                                                                        height:30%">
+	
+                </div>
+                
+ <!-- Registeration Form -->
+ <div class="col-lg-12">
+            <form method="POST" action="" id="agendarReserva">
+                <div class="row">
+
+                    <!--Fecha inicio-->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-black-tie text-muted">Fecha Inicio</i>
+                            </span>
+                        </div>
+                        <input type="date" id="fin" name="inicio" placeholder="Fecha de inicio" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['fecha_nac'])==1){echo $_SESSION['fecha_nac'];} ?>" required>
                     </div>
 
-                   
-                   
-                            //Aqui va el contenido
-
-                           
-                           
-
+                     <!--Fecha inicio-->
+                     <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-black-tie text-muted">Fecha Fin</i>
+                            </span>
                         </div>
+                        <input type="date" id="fin" name="fin" placeholder="Fecha de fin" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($_SESSION['fecha_nac'])==1){echo $_SESSION['fecha_nac'];} ?>" required>
+                    </div>
+
+
+                     <!-- First Name -->
+                   
+                     <i class="input-group col-lg-6 mb-2 ">Destino</i>
+                    <i class="input-group col-lg-6 mb-2 ">Tipo de transporte</i>
+
+                    <div class="input-group col-lg-6 mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            </span>
+                        </div>
+                        <input id="destino" type="text" name="destino" placeholder="Destino del viaje" class="form-control bg-white border-left-0 border-md" value="<?php  if(isset($_SESSION['nombre'])==1){echo $_SESSION['nombre'];} ?>" required>
+                    </div>
+
+                    <div class="input-group col-lg-6 mb-2 ">
+                                <select id="tipo" name="tipo" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                                    <option value="Avión">Avión</option>
+                                    <option value="Camión">Camión</option>
+                                </select>
+                                </div>
+
+                                <div class="input-group col-lg-12 mb-2 "></div>
+                                <div class="input-group col-lg-12 mb-2 "></div>
+                                <div class="input-group col-lg-12 mb-2 "></div>
+                                <div class="input-group col-lg-12 mb-2 "></div>
+                                <div class="input-group col-lg-12 mb-2 "></div>
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-5 ml-5" >
+                        <button type="submit" class="btn btn-primary btn-block py-2" onclick="verificar()">
+                            <span class="font-weight-bold">Verificar disponibilidad     
+                            </span>             
+                    </button>
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
+            </form>
+        </div>
+
+                    </div>
+                    
+
+                </div>
 
             </div>
+            
             <!-- End of Main Content -->
 
             <!-- Footer -->

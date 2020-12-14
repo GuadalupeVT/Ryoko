@@ -21,6 +21,7 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +71,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="dashboard.php">
                    <i class="icon ion-md-apps"></i>
                     <span>Dashboard</span></a>
@@ -84,7 +85,7 @@
                 Cliente
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="dashboard_reservas.php">
                    <i class="icon ion-md-calendar mr-2 lead p-2"></i>
                     <span>Mis reservas</span></a>
@@ -93,6 +94,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <?php
+if($_SESSION['usuario']=='admin'){
+?>
             <!-- Heading -->
             <div class="sidebar-heading">
                 Proveedor Hoteles
@@ -126,8 +130,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="dashboard_transporte.php">
                    <i class="icon ion-md-business mr-2 lead p-2"></i>
-                    <span>Mis transportes</span></a>
+                    <span>Mis reservas</span></a>
             </li>
+            <?php } ?>
 
 
             <!-- Divider -->
@@ -162,7 +167,7 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                                aria-label="Search" aria-describedby="basic-addon2" id="buscar" name="buscar">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -206,7 +211,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario'];  ?></span>
+                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario'];  ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -236,15 +241,133 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <i class="icon ion-md-add"></i> Agregar</a>
+                        <h1 class="h3 mb-0 text-gray-800">Reservas</h1>
+                        
                     </div>
 
-                   
-                   
-                            //Aqui va el contenido
+ 
 
+<ul id="example-1">
+               
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Fecha Inicio</th>
+                                <th scope="col">Fecha Fin</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Primer Apellido</th>
+                                <th scope="col">Segundo Apellido</th>
+                                <th scope="col">Tipo de Habitacion</th>
+                                <th scope="col">Hotel</th>
+                                <th scope="col">Tipo de transporte</th>
+                                <th scope="col">Linea</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                    
+                            <tr v-for="item in items">
+                                <td v-text="item.id_Reserva"> </td>
+                                <td v-text="item.fecha_inicio"></td>
+                                <td v-text="item.fecha_fin"></td>
+                                <td v-text="item.nombreCliente"></td>
+                                <td v-text="item.primerAp"></td>
+                                <td v-text="item.segundoAp"></td>
+                                <td v-text="item.tipoHabitacion"></td>
+                                <td v-text="item.nombreHotel"></td>
+                                <td v-text="item.tipoTransporte"></td>
+                                <td v-text="item.linea"></td>
+                                <td v-text="item.total"></td>
+
+                                <td>
+                                <a class="btn btn-warning ajax-request" id="modificar" data-toggle="modal" data-target="#modalRegisterForm" v-on:click="modificar(item.id_Reserva,item.fecha_inicio,item.fecha_fin,item.nombreCliente,item.primerAp,item.segundoAp,item.tipoHabitacion,item.nombreHotel,item.tipoTransporte,item.linea,item.total)">
+              <i class="fas fa-edit"></i>
+              </a>
+              <?php
+              ?>
+              <a class="btn btn-danger ajax-request" id="eliminar" v-on:click="eliminar(item.id_Reserva)"> 
+              <i class="fas fa-trash"></i>
+                                </td>
+                            </tr>
+
+                    </table>
+                    </ul>
+
+                        <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 id="titulo" class="modal-title w-100 font-weight-bold">Modificar Reserva</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Id</label>
+                                <input id="id" type="text" name="id" placeholder="Id" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Fecha de inicio</label>
+                                <input type="date" id="fin" name="inicio" placeholder="Fecha de inicio" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Fecha de fin</label>
+                                <input type="date" id="fin" name="fin" placeholder="Fecha de fin" class="form-control bg-white border-md border-left-0 pl-3" required>
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Nombre del cliente</label>
+                                <input id="nombre" type="text" name="nombre" placeholder="Nombre" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Primer Apellido</label>
+                                <input id="primerAp" type="text" name="primerAp" placeholder="Primer Apellido" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Segundo Apellido</label>
+                                <input id="segundoAp" type="text" name="segundoAp" placeholder="Segundo Apellido" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Tipo de Habitacion</label>
+                                <input id="tipo" type="text" name="tipo" placeholder="Tipo" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Nombre hotel</label>
+                                <input id="nombre_h" type="text" name="nombre_h" placeholder="Nombre del hotel" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Tipo de transporte</label>
+                                <input id="tipo_t" type="text" name="tipo_t" placeholder="Tipo de transporte" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Linea</label>
+                                <input id="linea" type="text" name="linea" placeholder="Linea" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                                <div class="md-form mb-2">
+                                <label data-error="wrong" data-success="right" for="orangeForm-email">Total</label>
+                                <input id="total" type="text" name="total" placeholder="Total" class="form-control bg-white border-left-0 border-md" disabled="disabled">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button class="btn btn-primary btn-block py-2" id="btn_agregar_modificar">Modificar</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>          
+
+                            
                            
                            
 
@@ -314,6 +437,13 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+    <script src="../../js/dashboard/reservas.js"></script>
 
 </body>
 
