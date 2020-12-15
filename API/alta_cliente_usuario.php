@@ -14,12 +14,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
              $segundoAp = $datos['segundoAp'];
              $fecha_nac = $datos['fecha_nac'];
              $telefono = $datos['telefono'];
-            
-              require_once("../modelo/DAO/usuarioDAO.php"); 
+             
+              require_once("dao/usuarioDAO.php"); 
               $uDAO = new UsuarioDAO();
               $res=$uDAO->validarUsuarioGoogle($correo);
               $respuesta = array();
-               if($res>1){
+              if($res>1){
 		               	$respuesta['exito'] = false;
 		                $respuesta['mensaje'] = "Ese usuario ya existe";
 		                $cad = json_encode($respuesta);
@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         //Se agrega usuario y cliente
 
                    	    $agregarUsuario=$uDAO->agregarUsuario($correo,$contraseña);
-                        include_once("../modelo/DAO/clienteDAO.php");  
+                        include_once("dao/clienteDAO.php");  
                         $cDAO=new ClienteDAO();
                         $agregarCliente=$cDAO->agregarCliente($correo,$nombre,$primerAp,$segundoAp,$fecha_nac,$telefono);
 
@@ -45,10 +45,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 				                echo ($cad);
                         }
         }
-
+              
+            
+        }
 } else {
      echo "No hay peticion HTTP";
 }
-
 
 ?>
