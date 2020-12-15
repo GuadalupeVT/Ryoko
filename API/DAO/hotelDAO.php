@@ -1,13 +1,12 @@
 <?php
- session_start();
-
   class HotelDAO{
+    require_once('conexion/conexion.php');
       
       //===============METODOS PARA ABCC ===============
 
       //------------ ALTAS ------------
       public function agregarHotel($id_hotel, $nombre, $categoria, $telefono, $dir_calle,$dir_num, $dir_ciudad){
-        require_once('../../../controlador/conexion_bd.php');
+        require_once('conexion/conexion.php');
 
         $cc = ConexionBD::getConexion(); 
         
@@ -28,7 +27,6 @@
 
       //------------ BAJAS ------------
       public function eliminarHotel($id_transporte){
-        include_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion(); 
         $sql= "DELETE FROM hotel WHERE id_Hotel=:id;";
         $result = $cc->db->prepare($sql); 
@@ -43,8 +41,7 @@
 
     //------------ MODIFICAR ------------
     public function modificarHotel($id_hotel, $nombre, $categoria, $telefono, $dir_calle,$dir_num, $dir_ciudad){
-        require_once('../../../controlador/conexion_bd.php');
-
+    
         $cc = ConexionBD::getConexion();
         $sql= "UPDATE hotel SET nombre=:nom, categoria=:cat, telefono=:tel, direccion_calle=:calle, direccion_numero=:num, direccion_ciudad=:ciudad  WHERE id_Hotel=:id;";
         $result = $cc->db->prepare($sql); 
@@ -57,7 +54,6 @@
     }//modificar
 
     public function consultarHoteles(){
-        require_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
         
             $busqueda=$cc->db->query("Select * from hotel");
@@ -87,7 +83,6 @@
     }
 
     public function generarId(){
-        require_once('../../../controlador/conexion_bd.php');
         $cc = ConexionBD::getConexion();
         $sql = "SELECT COUNT(*) FROM hotel";        
         $result = $cc->db->prepare($sql); 
@@ -95,6 +90,18 @@
         $affected_rows = $result->fetchColumn(); 
         $id="HT0".$affected_rows;
         echo ($id); 
+    }
+
+    public function obtenerId(){
+        $cc = ConexionBD::getConexion();
+        $sql = "SELECT * FROM hotel WHERE disponibilidad='Disponible'";        
+        $busqueda = $cc->db->query($sql); 
+        $data=array();
+        while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
+            $data[]=$r;
+        }
+        /*Almacenamos el resultado de fetchAll en una variable*/
+        echo json_encode(array("id"=>$data));    
     }
     
   }

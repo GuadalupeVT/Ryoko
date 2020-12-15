@@ -1,5 +1,5 @@
 <?php
-  require_once('Conexion/conexion_bd.php');
+  require_once('conexion/conexion.php');
 
 
   class UsuarioDAO{

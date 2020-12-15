@@ -43,11 +43,12 @@
         $sql= "UPDATE reserva SET fecha_inicio=:inicio, fecha_fin=:fin WHERE id_reserva=:id;";
         $result = $cc->db->prepare($sql); 
         $params = array(':id'=> $id_reserva, ':inicio' => $fecha_inicio, ':fin'=> $fecha_fin); 
-        if($result->execute($params)){
+         if($result->execute($params)){
             return 1;
         }  else{
             return 0;
         }
+        
     }//modificar
 
 

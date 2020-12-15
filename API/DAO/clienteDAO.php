@@ -1,5 +1,5 @@
 <?php
-  include_once('Conexion/conexion_bd.php');
+  include_once('conexion/conexion.php');
 
   class ClienteDAO{
       //===============METODOS PARA ABCC ===============

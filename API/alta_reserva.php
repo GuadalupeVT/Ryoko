@@ -7,16 +7,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             
             $datos = json_decode($cadena_JSON, true);
+            $usuario=$datos['usuario'];
             $fecha_inicio = $datos['inicio'];
             $fecha_fin = $datos['fin'];
             $destino=$datos['destino'];
             $tipo=$datos['tipo'];
-
+            
 
 			require_once("dao/reservaDAO.php"); 
 			$hDAO = new ReservaDAO();   
 			$id_reserva=$hDAO->generarId();
-			$id_usuario=$hDAO->obtenerUsuario();
 			$obtener_id_hotel=$hDAO->obtenerHotel($destino);
 			$obtener_id_habitacion=$hDAO->obtenerHabitacion($obtener_id_hotel);
 			$obtener_id_transporte=$hDAO->obtenerTransporte($tipo);
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			}else{
 
-			if($hDAO->agregarReserva($id_reserva, $fecha_inicio, $fecha_fin, $obtener_id_habitacion, $id_usuario, $obtener_id_transporte, $total)){
+			if($hDAO->agregarReserva($id_reserva, $fecha_inicio, $fecha_fin, $obtener_id_habitacion, $usuario, $obtener_id_transporte, $total)){
 				    $respuesta['exito'] = true;
                     $respuesta['mensaje'] = "Se registro Reserva";
                     $cad = json_encode($respuesta);
@@ -43,11 +43,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 
 			}
-
-			echo $res;
-
-
-
 
 			           }
 
