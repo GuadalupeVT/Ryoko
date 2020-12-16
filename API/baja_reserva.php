@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		         $tDAO = new ReservaDAO();
 		         //Se agrega usuario y cliente
 		             
-		            echo $tDAO->eliminarReserva($id);
+		            //$tDAO->eliminarReserva($id);
 		            if($tDAO->eliminarReserva($id)===1){
 		            $respuesta['exito'] = true;
                     $respuesta['mensaje'] = "Se elimino";

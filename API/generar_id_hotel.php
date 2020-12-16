@@ -4,9 +4,9 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cadena_JSON = file_get_contents('php://input'); //Recibe información a través de HTTP
             require_once("dao/hotelDAO.php"); 
-		         $tDAO = new ReservaDAO();
+		         $tDAO = new HotelDAO();
 		         //Se agrega usuario y cliente
-		            $eliminar=$tDAO->eliminarReserva($id);  
+		            $respuesta=$tDAO->generarId();  
                     echo ($respuesta);
 
   } else {

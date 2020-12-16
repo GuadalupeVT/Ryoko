@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if($hDAO->agregarReserva($id_reserva, $fecha_inicio, $fecha_fin, $obtener_id_habitacion, $usuario, $obtener_id_transporte, $total)){
 				    $respuesta['exito'] = true;
                     $respuesta['mensaje'] = "Se registro Reserva";
+                    $respuesta['id']=$id_reserva;
                     $cad = json_encode($respuesta);
                     echo ($cad);
 			}else{

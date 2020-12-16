@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         //Verificar respuesta
                          if($agregarUsuario===1 && $agregarCliente===1){
 	                            $respuesta['exito'] = true;
-				                $respuesta['mensaje'] = "Usuario registrado";
+				                $respuesta['mensaje'] = "Usuario registrado correctamente";
 				                $cad = json_encode($respuesta);
 				                echo ($cad);
                         }else if($agregarUsuario===0 && $agregarCliente===0){

@@ -56,8 +56,12 @@
         $params = array(':user'=> $correo,':pass'=>$contraseña);
         $result->execute(); 
         $affected_rows = $result->fetchAll(PDO::FETCH_ASSOC);
-        return ($affected_rows); 
-        //retorna numerico
+        $data=array();
+        while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
+            $data[]=$r;
+        }
+        /*Almacenamos el resultado de fetchAll en una variable*/
+        echo json_encode(array("reservas"=>$data));
     }
 
     public function validarUsuarioGoogle($correo){

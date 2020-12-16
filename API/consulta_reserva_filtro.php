@@ -15,9 +15,9 @@
             $parametro= $filtro['parametro'];
 
         if( $id_cliente==='admin'){
-               $busqueda=$cc->db->query("Select * from reporte_reserva where tipo LIKE '%".$parametro."%' OR disponibilidad LIKE '%".$parametro."%'");
+               $busqueda=$cc->db->query("select * from reporte_reserva where fecha_inicio LIKE '%".$filtro."%' OR fecha_fin LIKE '%".$filtro."%'");
             }else{
-                $busqueda=$cc->db->query("Select * from reporte_reserva WHERE tipo LIKE '%".$parametro."%' OR disponibilidad LIKE '%".$parametro."%' AND id_Cliente=sha1('". $id_cliente."')");
+                $busqueda=$cc->db->query("select * from reporte_reserva where fecha_inicio LIKE '%".$filtro."%' OR fecha_fin LIKE '%".$filtro."%' AND id_Cliente=sha1('". $id_cliente."')");
             }
             $data=array();
             while($r=$busqueda->fetch(PDO::FETCH_ASSOC)){
